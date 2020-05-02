@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ItiClone.Views.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:if="clr-namespace:ItiClone.Utils"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <StackLayout
+            x:Name="stkPrimary"
+            BackgroundColor="#2A3548"
+            VerticalOptions="FillAndExpand">
+            <Grid VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <FlexLayout Margin="20,20,20,0" JustifyContent="SpaceBetween">
+                    <Image Source="qrcodeicon" />
+                    <Image Source="itiicon" />
+                    <Image Source="locationicon" />
+                </FlexLayout>
+                <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand" />
+                <FlexLayout
+                    x:Name="flFooter"
+                    Grid.Row="2"
+                    Direction="Column"
+                    HorizontalOptions="Center"
+                    Opacity="0"
+                    VerticalOptions="Center">
+                    <FlexLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Footer_Tapped" />
+                    </FlexLayout.GestureRecognizers>
+                    <Grid x:Name="gridArrowUp">
+                        <Frame
+                            x:Name="frameArrowUp"
+                            Padding="0"
+                            CornerRadius="10"
+                            HeightRequest="20"
+                            HorizontalOptions="Center"
+                            IsVisible="False"
+                            WidthRequest="20" />
+                        <Label
+                            x:Name="arrowUpIcon"
+                            FontFamily="MaterialDesign"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="{x:Static if:IconFont.ChevronUp}"
+                            TextColor="White" />
+                    </Grid>
+                    <Label
+                        Margin="0,0,0,5"
+                        HorizontalTextAlignment="Center"
+                        Text="tudo sobre seu iti"
+                        TextColor="White" />
+                </FlexLayout>
+            </Grid>
+        </StackLayout>
+
+        <StackLayout x:Name="stkSecundary" BackgroundColor="#2A3548">
+            <Button Clicked="MostrarStkPrimario_Clicked" Text="Mostrar stk primario" />
+        </StackLayout>
+    </Grid>
+
+</ContentPage>
