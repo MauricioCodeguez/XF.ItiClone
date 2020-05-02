@@ -45,15 +45,6 @@ namespace ItiClone.Views
             }
         }
 
-        private async void MostrarStkPrimario_Clicked(object sender, EventArgs e)
-        {
-            Task translateStkPrincipal = stkPrimary.TranslateTo(0, 0, _duration);
-            Task translateStkSecundario = stkSecundary.TranslateTo(0, 0, _duration);
-
-            await Task.WhenAll(new List<Task> { translateStkPrincipal, translateStkSecundario })
-                .ContinueWith((t) => FooterAnimation(200), TaskContinuationOptions.RunContinuationsAsynchronously);
-        }
-
         private async void Footer_Tapped(object sender, EventArgs e)
         {
             Task translateStkPrincipal = stkPrimary.TranslateTo(0, stkPrimary.HeightRequest * -1, _duration);
@@ -63,6 +54,22 @@ namespace ItiClone.Views
             await flFooter.FadeTo(0, 0);
             await flFooter.TranslateTo(0, 50, 0);
             await gridArrowUp.TranslateTo(0, 0);
+        }
+
+        private void Eye_Tapped(object sender, EventArgs e)
+        {
+            lblBalance.IsVisible = !lblBalance.IsVisible;
+            bvBalance.IsVisible = !bvBalance.IsVisible;
+            lblEye.Text = lblBalance.IsVisible ? IconFont.EyeOff : IconFont.Eye;
+        }
+
+        private async void Header_Tapped(object sender, EventArgs e)
+        {
+            Task translateStkPrincipal = stkPrimary.TranslateTo(0, 0, _duration);
+            Task translateStkSecundario = stkSecundary.TranslateTo(0, 0, _duration);
+
+            await Task.WhenAll(new List<Task> { translateStkPrincipal, translateStkSecundario })
+                .ContinueWith((t) => FooterAnimation(200), TaskContinuationOptions.RunContinuationsAsynchronously);
         }
 
         private async Task FooterAnimation(int delayDuration)
@@ -78,13 +85,6 @@ namespace ItiClone.Views
             arrowUpIcon.TextColor = Color.FromHex("#2A3548");
 
             await gridArrowUp.TranslateTo(0, -5, 700, Easing.SpringOut);
-        }
-
-        private void Eye_Tapped(object sender, EventArgs e)
-        {
-            lblBalance.IsVisible = !lblBalance.IsVisible;
-            bvBalance.IsVisible = !bvBalance.IsVisible;
-            lblEye.Text = lblBalance.IsVisible ? IconFont.EyeOff : IconFont.Eye;
         }
     }
 }

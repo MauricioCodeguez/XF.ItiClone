@@ -5,5 +5,6 @@
         public const string ChevronUp = "\U000f0143";
         public const string Eye = "\U000f0208";
         public const string EyeOff = "\U000f0209";
+        public const string ChevronDown = "\U000f0140";
     }
 }

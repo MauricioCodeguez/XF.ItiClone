@@ -7,12 +7,15 @@
     xmlns:if="clr-namespace:ItiClone.Utils"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:templates="clr-namespace:ItiClone.Templates"
+    BackgroundColor="{StaticResource WindowBackground}"
     mc:Ignorable="d">
 
     <Grid>
         <StackLayout
             x:Name="stkPrimary"
-            BackgroundColor="#2A3548"
+            BackgroundColor="{StaticResource WindowBackground}"
+            IsVisible="False"
             VerticalOptions="FillAndExpand">
             <Grid VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
@@ -38,8 +41,8 @@
                             <pancake:PancakeView
                                 Margin="5"
                                 BorderGradientAngle="310"
-                                BorderGradientEndColor="#FF568D"
-                                BorderGradientStartColor="#ED6F08"
+                                BorderGradientEndColor="{StaticResource GradientEndColor}"
+                                BorderGradientStartColor="{StaticResource GradientStartColor}"
                                 BorderThickness="3"
                                 CornerRadius="35"
                                 HeightRequest="70"
@@ -47,7 +50,7 @@
                                 WidthRequest="70">
                                 <Image Source="itiicon1" />
                             </pancake:PancakeView>
-                            <Label Text="que tal colocar dinheiro no iti?" TextColor="White" />
+                            <Label Text="que tal colocar dinheiro no iti?" TextColor="{StaticResource TextColorWhite}" />
                             <Grid HeightRequest="35">
                                 <Label
                                     x:Name="lblBalance"
@@ -55,10 +58,10 @@
                                     FontSize="30"
                                     HorizontalOptions="Center"
                                     Text="R$ 0,00"
-                                    TextColor="White" />
+                                    TextColor="{StaticResource TextColorWhite}" />
                                 <BoxView
                                     x:Name="bvBalance"
-                                    BackgroundColor="White"
+                                    BackgroundColor="{StaticResource BackgroundWhite}"
                                     HeightRequest="1"
                                     HorizontalOptions="Center"
                                     IsVisible="False"
@@ -71,7 +74,7 @@
                                 FontSize="30"
                                 HorizontalOptions="Center"
                                 Text="{x:Static if:IconFont.EyeOff}"
-                                TextColor="White">
+                                TextColor="{StaticResource TextColorWhite}">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="Eye_Tapped" />
                                 </Label.GestureRecognizers>
@@ -94,8 +97,8 @@
                                         <pancake:PancakeView
                                             Margin="5"
                                             BackgroundGradientAngle="310"
-                                            BackgroundGradientEndColor="#FF568D"
-                                            BackgroundGradientStartColor="#ED6F08"
+                                            BackgroundGradientEndColor="{StaticResource GradientEndColor}"
+                                            BackgroundGradientStartColor="{StaticResource GradientStartColor}"
                                             CornerRadius="15"
                                             HasShadow="True"
                                             HeightRequest="175">
@@ -113,11 +116,11 @@
                                                         FontAttributes="Bold"
                                                         FontSize="20"
                                                         Text="{Binding Title}"
-                                                        TextColor="White" />
+                                                        TextColor="{StaticResource TextColorWhite}" />
                                                     <Label
                                                         FontSize="18"
                                                         Text="{Binding SubTitle}"
-                                                        TextColor="White" />
+                                                        TextColor="{StaticResource TextColorWhite}" />
                                                 </StackLayout>
                                             </Grid>
                                         </pancake:PancakeView>
@@ -154,7 +157,7 @@
                             FontSize="20"
                             HorizontalOptions="Center"
                             Text="{x:Static if:IconFont.ChevronUp}"
-                            TextColor="White" />
+                            TextColor="{StaticResource TextColorWhite}" />
                     </Grid>
                     <Label
                         Margin="0,0,0,5"
@@ -165,8 +168,72 @@
             </Grid>
         </StackLayout>
 
-        <StackLayout x:Name="stkSecundary" BackgroundColor="#2A3548">
-            <Button Clicked="MostrarStkPrimario_Clicked" Text="Mostrar stk primario" />
+        <StackLayout x:Name="stkSecundary" BackgroundColor="{StaticResource WindowBackground}">
+            <Grid VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Header_Tapped" />
+                    </Grid.GestureRecognizers>
+                    <Label
+                        Margin="20,0,0,0"
+                        FontFamily="MaterialDesign"
+                        FontSize="40"
+                        Text="{x:Static if:IconFont.ChevronDown}"
+                        TextColor="{StaticResource TextColorWhite}"
+                        VerticalTextAlignment="Center" />
+                    <Label
+                        FontSize="16"
+                        HorizontalTextAlignment="Center"
+                        Text="tudo sobre o seu iti"
+                        TextColor="{StaticResource TextColorWhite}"
+                        VerticalTextAlignment="Center" />
+                </Grid>
+
+                <CarouselView
+                    Grid.Row="1"
+                    ItemTemplate="{templates:HomePageTemplateSelector}"
+                    ItemsSource="{Binding Resumes}">
+                    <CarouselView.ItemsLayout>
+                        <LinearItemsLayout
+                            Orientation="Horizontal"
+                            SnapPointsAlignment="Start"
+                            SnapPointsType="MandatorySingle" />
+                    </CarouselView.ItemsLayout>
+                </CarouselView>
+
+                <!--<pancake:PancakeView
+                    Grid.Row="1"
+                    Margin="30,70,30,150"
+                    BackgroundColor="White"
+                    CornerRadius="10"
+                    HasShadow="True">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <pancake:PancakeView
+                            BackgroundGradientAngle="275"
+                            BackgroundGradientEndColor="{StaticResource GradientEndColor}"
+                            BackgroundGradientStartColor="{StaticResource GradientStartColor}"
+                            BorderThickness="3"
+                            HeightRequest="50">
+                            <Label
+                                FontSize="25"
+                                HorizontalTextAlignment="Center"
+                                Text="movimentações"
+                                TextColor="{StaticResource TextColorWhite}"
+                                VerticalTextAlignment="Center" />
+                        </pancake:PancakeView>
+                        <Grid Grid.Row="1" />
+                    </Grid>
+
+                </pancake:PancakeView>-->
+            </Grid>
         </StackLayout>
     </Grid>
 

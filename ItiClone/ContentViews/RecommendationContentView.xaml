@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="ItiClone.ContentViews.RecommendationContentView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    mc:Ignorable="d">
+    <ContentView.Content>
+        <pancake:PancakeView
+            Grid.Row="1"
+            Margin="30,70,30,150"
+            BackgroundColor="White"
+            CornerRadius="10"
+            HasShadow="True">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <pancake:PancakeView
+                    BackgroundGradientAngle="275"
+                    BackgroundGradientEndColor="{StaticResource GradientEndColor}"
+                    BackgroundGradientStartColor="{StaticResource GradientStartColor}"
+                    BorderThickness="3"
+                    HeightRequest="50">
+                    <Label
+                        FontSize="25"
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding Title}"
+                        TextColor="{StaticResource TextColorWhite}"
+                        VerticalTextAlignment="Center" />
+                </pancake:PancakeView>
+                <Grid Grid.Row="1" />
+            </Grid>
+        </pancake:PancakeView>
+    </ContentView.Content>
+</ContentView>
