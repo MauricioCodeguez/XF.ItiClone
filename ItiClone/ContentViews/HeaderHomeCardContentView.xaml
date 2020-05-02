@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="ItiClone.ContentViews.HeaderHomeCardContentView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    mc:Ignorable="d">
+    <ContentView.Content>
+        <pancake:PancakeView
+            BackgroundGradientAngle="275"
+            BackgroundGradientEndColor="{StaticResource GradientEndColor}"
+            BackgroundGradientStartColor="{StaticResource GradientStartColor}"
+            BorderThickness="3"
+            HeightRequest="50">
+            <Label
+                FontSize="25"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Title}"
+                TextColor="{StaticResource TextColorWhite}"
+                VerticalTextAlignment="Center" />
+        </pancake:PancakeView>
+    </ContentView.Content>
+</ContentView>

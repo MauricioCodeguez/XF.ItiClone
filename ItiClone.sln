@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItiClone.Android", "ItiClon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItiClone.iOS", "ItiClone.iOS\ItiClone.iOS.csproj", "{7D5A8AF0-CACD-4417-8123-C824837297C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItiClone", "ItiClone\ItiClone.csproj", "{6C7C6308-6BAF-4BCC-ACFD-928BC401FE51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItiClone", "ItiClone\ItiClone.csproj", "{6C7C6308-6BAF-4BCC-ACFD-928BC401FE51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

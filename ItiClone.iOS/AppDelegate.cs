@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿
 using Foundation;
+using PanCardView.iOS;
 using UIKit;
 
 namespace ItiClone.iOS
@@ -23,8 +21,10 @@ namespace ItiClone.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            CardsViewRenderer.Preserve();
 
+            LoadApplication(new App());
+            
             return base.FinishedLaunching(app, options);
         }
     }

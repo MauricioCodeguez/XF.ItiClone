@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     mc:Ignorable="d">
     <Application.Resources>
         <Color x:Key="BackgroundWhite">#FFFFFF</Color>
@@ -12,5 +13,12 @@
         <Color x:Key="WindowBackground">#2A3548</Color>
         <Color x:Key="GradientEndColor">#FF568D</Color>
         <Color x:Key="GradientStartColor">#ED6F08</Color>
+
+        <Style x:Key="HomeCards" TargetType="pancake:PancakeView">
+            <Setter Property="Margin" Value="30,70,30,100" />
+            <Setter Property="BackgroundColor" Value="{StaticResource BackgroundWhite}" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HasShadow" Value="True" />
+        </Style>
     </Application.Resources>
 </Application>

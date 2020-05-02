@@ -54,6 +54,8 @@ namespace ItiClone.Views
             await flFooter.FadeTo(0, 0);
             await flFooter.TranslateTo(0, 50, 0);
             await gridArrowUp.TranslateTo(0, 0);
+
+            _isShowingPrimary = false;
         }
 
         private void Eye_Tapped(object sender, EventArgs e)
@@ -65,11 +67,7 @@ namespace ItiClone.Views
 
         private async void Header_Tapped(object sender, EventArgs e)
         {
-            Task translateStkPrincipal = stkPrimary.TranslateTo(0, 0, _duration);
-            Task translateStkSecundario = stkSecundary.TranslateTo(0, 0, _duration);
-
-            await Task.WhenAll(new List<Task> { translateStkPrincipal, translateStkSecundario })
-                .ContinueWith((t) => FooterAnimation(200), TaskContinuationOptions.RunContinuationsAsynchronously);
+            await ShowPrimary();
         }
 
         private async Task FooterAnimation(int delayDuration)
@@ -85,6 +83,15 @@ namespace ItiClone.Views
             arrowUpIcon.TextColor = Color.FromHex("#2A3548");
 
             await gridArrowUp.TranslateTo(0, -5, 700, Easing.SpringOut);
+        }
+
+        private async Task ShowPrimary()
+        {
+            Task translateStkPrincipal = stkPrimary.TranslateTo(0, 0, _duration);
+            Task translateStkSecundario = stkSecundary.TranslateTo(0, 0, _duration);
+
+            await Task.WhenAll(new List<Task> { translateStkPrincipal, translateStkSecundario })
+                .ContinueWith((t) => FooterAnimation(200), TaskContinuationOptions.RunContinuationsAsynchronously);
         }
     }
 }
