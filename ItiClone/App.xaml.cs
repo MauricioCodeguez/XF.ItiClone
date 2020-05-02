@@ -1,5 +1,6 @@
 ﻿using ItiClone.Services.Navigation;
 using ItiClone.ViewModels;
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace ItiClone
@@ -9,6 +10,12 @@ namespace ItiClone
         public App()
         {
             InitializeComponent();
+
+            Device.SetFlags(new List<string>() {
+                    "IndicatorView_Experimental",
+                    "CarouselView_Experimental"
+                });
+
             NavigationService.Current.SetarMainPage<HomePageViewModel>();
         }
 

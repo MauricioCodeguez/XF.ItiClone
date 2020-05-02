@@ -6,6 +6,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:if="clr-namespace:ItiClone.Utils"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     mc:Ignorable="d">
 
     <Grid>
@@ -24,7 +25,13 @@
                     <Image Source="itiicon" />
                     <Image Source="locationicon" />
                 </FlexLayout>
-                <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand" />
+                <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand">
+                    <pancake:PancakeView
+                        BackgroundGradientEndColor="#FF568D"
+                        BackgroundGradientStartColor="#ED6F08"
+                        CornerRadius="10"
+                        HeightRequest="150" />
+                </StackLayout>
                 <FlexLayout
                     x:Name="flFooter"
                     Grid.Row="2"
@@ -61,7 +68,10 @@
             </Grid>
         </StackLayout>
 
-        <StackLayout x:Name="stkSecundary" BackgroundColor="#2A3548">
+        <StackLayout
+            x:Name="stkSecundary"
+            BackgroundColor="#2A3548"
+            IsVisible="False">
             <Button Clicked="MostrarStkPrimario_Clicked" Text="Mostrar stk primario" />
         </StackLayout>
     </Grid>
