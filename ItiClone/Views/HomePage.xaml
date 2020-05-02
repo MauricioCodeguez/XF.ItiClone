@@ -187,10 +187,7 @@
             </Grid>
         </StackLayout>
 
-        <StackLayout
-            x:Name="stkSecundary"
-            BackgroundColor="{StaticResource WindowBackground}"
-            IsVisible="False">
+        <StackLayout x:Name="stkSecundary" BackgroundColor="{StaticResource WindowBackground}">
             <Grid VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75" />
