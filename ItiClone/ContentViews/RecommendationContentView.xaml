@@ -16,7 +16,25 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <controls:HeaderHomeCardContentView />
-                <Grid Grid.Row="1" />
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="75" />
+                    </Grid.RowDefinitions>
+                    <StackLayout VerticalOptions="Center">
+                        <Image Source="recommendationicon" VerticalOptions="Fill" />
+                        <Label
+                            FontSize="20"
+                            HorizontalTextAlignment="Center"
+                            Text="de 0 a 10, quanto você recomendaria o iti para um amigo?"
+                            TextColor="#2A2A2A" />
+                    </StackLayout>
+                    <Button
+                        Grid.Row="1"
+                        BackgroundColor="Transparent"
+                        Text="avaliar"
+                        TextColor="{StaticResource TextColorOrange}" />
+                </Grid>
             </Grid>
         </pancake:PancakeView>
     </ContentView.Content>

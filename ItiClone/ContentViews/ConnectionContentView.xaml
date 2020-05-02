@@ -16,7 +16,113 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <controls:HeaderHomeCardContentView />
-                <Grid Grid.Row="1" />
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="75" />
+                    </Grid.RowDefinitions>
+                    <FlexLayout
+                        Margin="10,0"
+                        Direction="Column"
+                        JustifyContent="SpaceBetween">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="itauconexaoicon" VerticalOptions="Center" />
+                            <FlexLayout Grid.Column="1" Direction="Column">
+                                <Label
+                                    FontSize="20"
+                                    Text="itimania"
+                                    TextColor="#2A2A2A" />
+                                <Label
+                                    FontSize="20"
+                                    Text="maio"
+                                    TextColor="#797979" />
+                                <Frame
+                                    Padding="5"
+                                    BackgroundColor="#EEF5FF"
+                                    CornerRadius="15"
+                                    HasShadow="False"
+                                    HeightRequest="30">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        Text=":D até r$20 de volta no"
+                                        TextColor="#156EED"
+                                        VerticalTextAlignment="Center" />
+                                </Frame>
+                            </FlexLayout>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="diasdamaesconexaoicon" VerticalOptions="Center" />
+                            <FlexLayout Grid.Column="1" Direction="Column">
+                                <Label
+                                    FontSize="20"
+                                    Text="dia das mães"
+                                    TextColor="#2A2A2A" />
+                                <Label
+                                    FontSize="20"
+                                    Text="iti"
+                                    TextColor="#797979" />
+                                <Frame
+                                    Padding="5"
+                                    BackgroundColor="#EEF5FF"
+                                    CornerRadius="15"
+                                    HasShadow="False"
+                                    HeightRequest="30"
+                                    WidthRequest="140">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        Text=":D r$20 de volta"
+                                        TextColor="#156EED"
+                                        VerticalTextAlignment="Center" />
+                                </Frame>
+                            </FlexLayout>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="shopclubconexaoicon" VerticalOptions="Center" />
+                            <FlexLayout Grid.Column="1" Direction="Column">
+                                <Label
+                                    FontSize="20"
+                                    Text="Electrolux"
+                                    TextColor="#2A2A2A" />
+                                <Label
+                                    FontSize="20"
+                                    Text="eletroeletrônicos"
+                                    TextColor="#797979" />
+                                <Frame
+                                    Padding="5"
+                                    BackgroundColor="#EBF4EF"
+                                    CornerRadius="15"
+                                    HasShadow="False"
+                                    HeightRequest="30">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text="% até 30% de desconto"
+                                        TextColor="#0A6E3C"
+                                        VerticalTextAlignment="Center" />
+                                </Frame>
+                            </FlexLayout>
+                        </Grid>
+                    </FlexLayout>
+                    <Button
+                        Grid.Row="1"
+                        BackgroundColor="Transparent"
+                        Text="ver todos"
+                        TextColor="{StaticResource TextColorOrange}" />
+                </Grid>
             </Grid>
         </pancake:PancakeView>
     </ContentView.Content>

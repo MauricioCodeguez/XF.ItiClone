@@ -24,7 +24,7 @@ namespace ItiClone.Views
             base.OnAppearing();
 
             flFooter.TranslateTo(0, 50, 0);
-            await FooterAnimation(500);
+            await FooterAnimation(1000);
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -54,8 +54,6 @@ namespace ItiClone.Views
             await flFooter.FadeTo(0, 0);
             await flFooter.TranslateTo(0, 50, 0);
             await gridArrowUp.TranslateTo(0, 0);
-
-            _isShowingPrimary = false;
         }
 
         private void Eye_Tapped(object sender, EventArgs e)

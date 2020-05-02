@@ -13,6 +13,7 @@
         <Color x:Key="WindowBackground">#2A3548</Color>
         <Color x:Key="GradientEndColor">#FF568D</Color>
         <Color x:Key="GradientStartColor">#ED6F08</Color>
+        <Color x:Key="TextColorOrange">#EC7000</Color>
 
         <Style x:Key="HomeCards" TargetType="pancake:PancakeView">
             <Setter Property="Margin" Value="30,70,30,100" />
