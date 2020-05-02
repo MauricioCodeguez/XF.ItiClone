@@ -1,6 +1,8 @@
 ﻿using ItiClone.Utils;
+using ItiClone.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -45,6 +47,26 @@ namespace ItiClone.Views
             }
         }
 
+        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.CurrentSelection.Count == 0)
+                return;
+
+            var item = (e.CurrentSelection.FirstOrDefault() as Models.Action);
+
+            if (item != null)
+                (BindingContext as HomePageViewModel).ActionCommand.Execute(item as Models.Action);
+
+            cvActions.SelectedItem = null;
+        }
+
+        private void Eye_Tapped(object sender, EventArgs e)
+        {
+            lblBalance.IsVisible = !lblBalance.IsVisible;
+            bvBalance.IsVisible = !bvBalance.IsVisible;
+            lblEye.Text = lblBalance.IsVisible ? IconFont.EyeOff : IconFont.Eye;
+        }
+
         private async void Footer_Tapped(object sender, EventArgs e)
         {
             Task translateStkPrincipal = stkPrimary.TranslateTo(0, stkPrimary.HeightRequest * -1, _duration);
@@ -54,13 +76,6 @@ namespace ItiClone.Views
             await flFooter.FadeTo(0, 0);
             await flFooter.TranslateTo(0, 50, 0);
             await gridArrowUp.TranslateTo(0, 0);
-        }
-
-        private void Eye_Tapped(object sender, EventArgs e)
-        {
-            lblBalance.IsVisible = !lblBalance.IsVisible;
-            bvBalance.IsVisible = !bvBalance.IsVisible;
-            lblEye.Text = lblBalance.IsVisible ? IconFont.EyeOff : IconFont.Eye;
         }
 
         private async void Header_Tapped(object sender, EventArgs e)
@@ -90,6 +105,6 @@ namespace ItiClone.Views
 
             await Task.WhenAll(new List<Task> { translateStkPrincipal, translateStkSecundario })
                 .ContinueWith((t) => FooterAnimation(200), TaskContinuationOptions.RunContinuationsAsynchronously);
-        }
+        } 
     }
 }

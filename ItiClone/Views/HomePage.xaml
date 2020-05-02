@@ -97,10 +97,13 @@
                             </Label>
                         </StackLayout>
                         <CollectionView
+                            x:Name="cvActions"
                             Grid.Row="1"
                             Margin="10,0,0,0"
                             HorizontalScrollBarVisibility="Never"
-                            ItemsSource="{Binding Actions}">
+                            ItemsSource="{Binding Actions}"
+                            SelectionChanged="CollectionView_SelectionChanged"
+                            SelectionMode="Single">
                             <CollectionView.ItemsLayout>
                                 <LinearItemsLayout Orientation="Horizontal" />
                             </CollectionView.ItemsLayout>
@@ -184,7 +187,10 @@
             </Grid>
         </StackLayout>
 
-        <StackLayout x:Name="stkSecundary" BackgroundColor="{StaticResource WindowBackground}">
+        <StackLayout
+            x:Name="stkSecundary"
+            BackgroundColor="{StaticResource WindowBackground}"
+            IsVisible="False">
             <Grid VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75" />

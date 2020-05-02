@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ItiClone.Views.RegisterCardPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    mc:Ignorable="d">
+
+    <NavigationPage.TitleView>
+        <Label
+            Margin="0,0,70,0"
+            FontSize="16"
+            HorizontalTextAlignment="Center"
+            Text="{Binding Title}"
+            TextColor="{StaticResource TextColorWhite}"
+            VerticalTextAlignment="Center" />
+    </NavigationPage.TitleView>
+
+    <Grid VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Frame
+            Margin="20,0"
+            BorderColor="#BFBFBF"
+            CornerRadius="10"
+            HeightRequest="150"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Center">
+            <FlexLayout Direction="Column" JustifyContent="SpaceBetween">
+                <Label Text="Bandeira" TextColor="{StaticResource TextColorOrange}" />
+                <Label
+                    FontSize="20"
+                    Text="apelido do cartão"
+                    TextColor="#DCDCDC" />
+                <Label
+                    FontSize="20"
+                    Text="XXXX XXXX XXXX XXXX"
+                    TextColor="{StaticResource TextColorOrange}" />
+                <Label
+                    FontSize="20"
+                    Text="NOME IMPRESSO"
+                    TextColor="#DCDCDC" />
+                <Label
+                    FontSize="20"
+                    HorizontalTextAlignment="End"
+                    Text="MM / AA"
+                    TextColor="#DCDCDC" />
+            </FlexLayout>
+        </Frame>
+
+        <FlexLayout
+            Grid.Row="1"
+            Margin="10"
+            Direction="Column"
+            HeightRequest="150">
+            <Label Margin="5,0,0,0" Text="número do cartão de crédito" />
+            <Entry />
+            <pancake:PancakeView
+                Margin="0,20,0,0"
+                CornerRadius="25"
+                HeightRequest="50"
+                IsEnabled="True">
+                <pancake:PancakeView.Triggers>
+                    <Trigger TargetType="pancake:PancakeView" Property="IsEnabled" Value="True">
+                        <Setter Property="BackgroundGradientAngle" Value="275" />
+                        <Setter Property="BackgroundGradientEndColor" Value="{StaticResource GradientEndColor}" />
+                        <Setter Property="BackgroundGradientStartColor" Value="{StaticResource GradientStartColor}" />
+                    </Trigger>
+                    <Trigger TargetType="pancake:PancakeView" Property="IsEnabled" Value="False">
+                        <Setter Property="BackgroundColor" Value="#E9E9E9" />
+                    </Trigger>
+                </pancake:PancakeView.Triggers>
+                <Label
+                    HorizontalTextAlignment="Center"
+                    Text="continuar"
+                    TextColor="{StaticResource TextColorWhite}"
+                    VerticalTextAlignment="Center" />
+            </pancake:PancakeView>
+        </FlexLayout>
+    </Grid>
+</ContentPage>

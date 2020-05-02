@@ -1,5 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using ItiClone.Services.Navigation;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace ItiClone.ViewModels
 {
@@ -7,6 +10,8 @@ namespace ItiClone.ViewModels
     {
         public ObservableCollection<Models.Action> Actions { get; private set; }
         public ObservableCollection<Models.Resume> Resumes { get; private set; }
+
+        public ICommand ActionCommand { get; private set; }
 
         public HomePageViewModel()
         {
@@ -16,31 +21,36 @@ namespace ItiClone.ViewModels
                 {
                     Title = "pagar",
                     SubTitle = "transferir",
-                    Icon = "pagaricon"
+                    Icon = "pagaricon",
+                    ActionType = Models.ActionType.Pay
                 },
                 new Models.Action
                 {
                     Title = "cobrar",
                     SubTitle = "alguém",
-                    Icon = "usericon"
+                    Icon = "usericon",
+                    ActionType = Models.ActionType.ChargeSomeone
                 },
                 new Models.Action
                 {
                     Title = "colocar",
                     SubTitle = "dinheiro",
-                    Icon = "colocardinheiroicon"
+                    Icon = "colocardinheiroicon",
+                    ActionType = Models.ActionType.DepositMoney
                 },
                 new Models.Action
                 {
                     Title = "adicionar",
                     SubTitle = "cartão",
-                    Icon = "cartaocreditoicon"
+                    Icon = "cartaocreditoicon",
+                    ActionType = Models.ActionType.AddCard
                 },
                 new Models.Action
                 {
                     Title = "fazer",
                     SubTitle = "recarga",
-                    Icon = "recargaicon"
+                    Icon = "recargaicon",
+                    ActionType = Models.ActionType.TopUp
                 }
             };
 
@@ -67,11 +77,22 @@ namespace ItiClone.ViewModels
                     ResumeType = Models.ResumeType.Recommendation
                 }
             };
+
+            ActionCommand = new Command<Models.Action>(async (a) => await ActionCommandExecuteAsync(a));
         }
 
         public override Task InitializeAsync(object[] args)
         {
             return Task.CompletedTask;
+        }
+
+        private async Task ActionCommandExecuteAsync(Models.Action action)
+        {
+            if (action == null)
+                return;
+
+            if (action.ActionType == Models.ActionType.AddCard)
+                await NavigationService.Current.PushAsync<RegisterCardPageViewModel>();
         }
     }
 }
