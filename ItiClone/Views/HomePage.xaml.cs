@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ItiClone.Utils;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -77,6 +78,13 @@ namespace ItiClone.Views
             arrowUpIcon.TextColor = Color.FromHex("#2A3548");
 
             await gridArrowUp.TranslateTo(0, -5, 700, Easing.SpringOut);
+        }
+
+        private void Eye_Tapped(object sender, EventArgs e)
+        {
+            lblBalance.IsVisible = !lblBalance.IsVisible;
+            bvBalance.IsVisible = !bvBalance.IsVisible;
+            lblEye.Text = lblBalance.IsVisible ? IconFont.EyeOff : IconFont.Eye;
         }
     }
 }

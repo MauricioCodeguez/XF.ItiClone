@@ -26,11 +26,108 @@
                     <Image Source="locationicon" />
                 </FlexLayout>
                 <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand">
-                    <pancake:PancakeView
-                        BackgroundGradientEndColor="#FF568D"
-                        BackgroundGradientStartColor="#ED6F08"
-                        CornerRadius="10"
-                        HeightRequest="150" />
+                    <Grid VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5.5*" />
+                            <RowDefinition Height="4.5*" />
+                        </Grid.RowDefinitions>
+                        <StackLayout
+                            Margin="0,20,0,0"
+                            HorizontalOptions="Center"
+                            Spacing="20">
+                            <pancake:PancakeView
+                                Margin="5"
+                                BorderGradientAngle="310"
+                                BorderGradientEndColor="#FF568D"
+                                BorderGradientStartColor="#ED6F08"
+                                BorderThickness="3"
+                                CornerRadius="35"
+                                HeightRequest="70"
+                                HorizontalOptions="Center"
+                                WidthRequest="70">
+                                <Image Source="itiicon1" />
+                            </pancake:PancakeView>
+                            <Label Text="que tal colocar dinheiro no iti?" TextColor="White" />
+                            <Grid HeightRequest="35">
+                                <Label
+                                    x:Name="lblBalance"
+                                    FontAttributes="Bold"
+                                    FontSize="30"
+                                    HorizontalOptions="Center"
+                                    Text="R$ 0,00"
+                                    TextColor="White" />
+                                <BoxView
+                                    x:Name="bvBalance"
+                                    BackgroundColor="White"
+                                    HeightRequest="1"
+                                    HorizontalOptions="Center"
+                                    IsVisible="False"
+                                    VerticalOptions="Center"
+                                    WidthRequest="50" />
+                            </Grid>
+                            <Label
+                                x:Name="lblEye"
+                                FontFamily="MaterialDesign"
+                                FontSize="30"
+                                HorizontalOptions="Center"
+                                Text="{x:Static if:IconFont.EyeOff}"
+                                TextColor="White">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Eye_Tapped" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                        <CollectionView
+                            Grid.Row="1"
+                            Margin="10,0,0,0"
+                            HorizontalScrollBarVisibility="Never"
+                            ItemsSource="{Binding Actions}">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <FlexLayout
+                                        Direction="Column"
+                                        JustifyContent="Start"
+                                        WidthRequest="135">
+                                        <pancake:PancakeView
+                                            Margin="5"
+                                            BackgroundGradientAngle="310"
+                                            BackgroundGradientEndColor="#FF568D"
+                                            BackgroundGradientStartColor="#ED6F08"
+                                            CornerRadius="15"
+                                            HasShadow="True"
+                                            HeightRequest="175">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="6*" />
+                                                    <RowDefinition Height="4*" />
+                                                </Grid.RowDefinitions>
+                                                <Image Margin="0,-25,0,0" Source="{Binding Icon}" />
+                                                <StackLayout
+                                                    Grid.Row="1"
+                                                    Padding="10"
+                                                    Spacing="-5">
+                                                    <Label
+                                                        FontAttributes="Bold"
+                                                        FontSize="20"
+                                                        Text="{Binding Title}"
+                                                        TextColor="White" />
+                                                    <Label
+                                                        FontSize="18"
+                                                        Text="{Binding SubTitle}"
+                                                        TextColor="White" />
+                                                </StackLayout>
+                                            </Grid>
+                                        </pancake:PancakeView>
+                                    </FlexLayout>
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+
                 </StackLayout>
                 <FlexLayout
                     x:Name="flFooter"
@@ -68,10 +165,7 @@
             </Grid>
         </StackLayout>
 
-        <StackLayout
-            x:Name="stkSecundary"
-            BackgroundColor="#2A3548"
-            IsVisible="False">
+        <StackLayout x:Name="stkSecundary" BackgroundColor="#2A3548">
             <Button Clicked="MostrarStkPrimario_Clicked" Text="Mostrar stk primario" />
         </StackLayout>
     </Grid>
