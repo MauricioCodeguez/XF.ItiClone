@@ -3,7 +3,8 @@
     x:Class="ItiClone.Views.RegisterCardPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:behavior="clr-namespace:ItiClone.Behavior"
+    xmlns:behavior="clr-namespace:ItiClone.Behaviors"
+    xmlns:converter="clr-namespace:ItiClone.Converters"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -24,6 +25,7 @@
             <RowDefinition Height="5" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid>
@@ -34,9 +36,10 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <BoxView
-                Grid.ColumnSpan="6"
+                Grid.ColumnSpan="7"
                 BackgroundColor="{StaticResource WindowBackground}"
                 VerticalOptions="FillAndExpand" />
             <BoxView
@@ -55,83 +58,223 @@
             HeightRequest="170"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="Center">
-            <Grid>
-                <FlexLayout
-                    x:Name="flFrontCard"
-                    Padding="20"
-                    Direction="Column"
-                    JustifyContent="SpaceBetween">
-                    <Label Text="Bandeira" TextColor="{StaticResource TextColorOrange}" />
-                    <Label
-                        FontSize="20"
-                        Text="{Binding NickNameCard}"
-                        TextColor="#DCDCDC" />
-                    <Label
-                        FontSize="20"
-                        Text="{Binding CardNumber}"
-                        TextColor="{StaticResource TextColorOrange}" />
-                    <Label
-                        FontSize="20"
-                        Text="{Binding CardName}"
-                        TextColor="#DCDCDC" />
-                    <Label
-                        FontSize="20"
-                        HorizontalTextAlignment="End"
-                        Text="{Binding ValidateCard}"
-                        TextColor="#DCDCDC" />
-                </FlexLayout>
-                <FlexLayout
-                    x:Name="flBackCard"
-                    Direction="Column"
-                    JustifyContent="SpaceEvenly"
-                    Opacity="0">
-                    <BoxView BackgroundColor="#1C2534" HeightRequest="50" />
-                    <Label
-                        Margin="0,0,35,0"
-                        FontSize="20"
-                        HorizontalTextAlignment="End"
-                        Text="{Binding CVV}"
-                        TextColor="{StaticResource TextColorOrange}"
-                        VerticalTextAlignment="Center" />
-                </FlexLayout>
-            </Grid>
+            <pancake:PancakeView x:Name="pvCard">
+                <Grid>
+                    <FlexLayout
+                        x:Name="flFrontCard"
+                        Padding="20"
+                        Direction="Column"
+                        JustifyContent="SpaceBetween">
+                        <Image
+                            x:Name="sinCardImage"
+                            Source="sincardiconorange"
+                            WidthRequest="35" />
+                        <Label
+                            FontSize="20"
+                            Text="{Binding NickNameCard}"
+                            TextColor="{Binding Step4Color}" />
+                        <Label
+                            FontSize="20"
+                            Text="{Binding CardNumber}"
+                            TextColor="{Binding Step1Color}" />
+                        <Label
+                            FontSize="20"
+                            Text="{Binding CardName, Converter={converter:UpperTextConverter}}"
+                            TextColor="{Binding Step3Color}" />
+                        <Label
+                            FontSize="20"
+                            HorizontalTextAlignment="End"
+                            Text="{Binding ValidateCard}"
+                            TextColor="{Binding Step2Color}" />
+                    </FlexLayout>
+                    <FlexLayout
+                        x:Name="flBackCard"
+                        Direction="Column"
+                        JustifyContent="SpaceEvenly"
+                        Opacity="0">
+                        <BoxView BackgroundColor="#1C2534" HeightRequest="50" />
+                        <Label
+                            Margin="0,0,35,0"
+                            FontSize="20"
+                            HorizontalTextAlignment="End"
+                            Text="{Binding CVVCard}"
+                            TextColor="{StaticResource TextColorOrange}"
+                            VerticalTextAlignment="Center" />
+                    </FlexLayout>
+                </Grid>
+            </pancake:PancakeView>
         </Frame>
 
         <FlexLayout
             Grid.Row="2"
-            Margin="10"
+            Margin="30,0"
             Direction="Column"
-            HeightRequest="150">
-            <Label Margin="5,0,0,0" Text="número do cartão de crédito" />
-            <Entry Keyboard="Numeric">
-                <Entry.Behaviors>
-                    <behavior:MaskedBehavior Mask="XXXX XXXX XXXX XXXX" />
-                </Entry.Behaviors>
-            </Entry>
-            <pancake:PancakeView
-                Margin="0,20,0,0"
-                CornerRadius="25"
-                HeightRequest="50"
-                IsEnabled="True">
-                <pancake:PancakeView.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding NextStepCommand}" />
-                </pancake:PancakeView.GestureRecognizers>
-                <pancake:PancakeView.Triggers>
-                    <Trigger TargetType="pancake:PancakeView" Property="IsEnabled" Value="True">
-                        <Setter Property="BackgroundGradientAngle" Value="275" />
-                        <Setter Property="BackgroundGradientEndColor" Value="{StaticResource GradientEndColor}" />
-                        <Setter Property="BackgroundGradientStartColor" Value="{StaticResource GradientStartColor}" />
-                    </Trigger>
-                    <Trigger TargetType="pancake:PancakeView" Property="IsEnabled" Value="False">
-                        <Setter Property="BackgroundColor" Value="#E9E9E9" />
-                    </Trigger>
-                </pancake:PancakeView.Triggers>
-                <Label
-                    HorizontalTextAlignment="Center"
-                    Text="continuar"
-                    TextColor="{StaticResource TextColorWhite}"
-                    VerticalTextAlignment="Center" />
-            </pancake:PancakeView>
+            HeightRequest="300"
+            IsVisible="{Binding ChangeCardColorVisible}">
+            <Label
+                FontAttributes="Bold"
+                FontSize="16"
+                HorizontalTextAlignment="Center"
+                Text="escolha uma cor"
+                TextColor="#2A2A2A" />
+            <Label
+                Margin="0,10,0,30"
+                FontSize="16"
+                HorizontalTextAlignment="Center"
+                Text="deixe seu cartão mais colorido e fácil de identificar"
+                TextColor="#6A6A6A" />
+            <FlexLayout HeightRequest="50" JustifyContent="SpaceBetween">
+                <pancake:PancakeView
+                    x:Name="pvWhiteCardColor"
+                    BorderGradientAngle="310"
+                    BorderGradientEndColor="{StaticResource GradientEndColor}"
+                    BorderGradientStartColor="{StaticResource GradientStartColor}"
+                    BorderThickness="3"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    WidthRequest="50">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="PvWhiteCardColor_Tapped" />
+                    </pancake:PancakeView.GestureRecognizers>
+                    <pancake:PancakeView
+                        x:Name="pvWhiteContentCardColor"
+                        Margin="10"
+                        BackgroundColor="White"
+                        BorderColor="Black"
+                        BorderThickness="1"
+                        CornerRadius="20"
+                        HeightRequest="30"
+                        WidthRequest="30" />
+                </pancake:PancakeView>
+
+                <pancake:PancakeView
+                    x:Name="pvOrangeCardColor"
+                    BorderGradientAngle="310"
+                    BorderGradientEndColor="{StaticResource GradientEndColor}"
+                    BorderGradientStartColor="{StaticResource GradientStartColor}"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    WidthRequest="50">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="PvOrangeCardColor_Tapped" />
+                    </pancake:PancakeView.GestureRecognizers>
+                    <pancake:PancakeView
+                        x:Name="pvOrangeContentCardColor"
+                        Margin="10"
+                        BackgroundGradientAngle="45"
+                        BackgroundGradientEndColor="{StaticResource GradientEndColor}"
+                        BackgroundGradientStartColor="{StaticResource GradientStartColor}"
+                        CornerRadius="20"
+                        HeightRequest="30"
+                        WidthRequest="30" />
+                </pancake:PancakeView>
+
+                <pancake:PancakeView
+                    x:Name="pvBlueCardColor"
+                    BorderGradientAngle="310"
+                    BorderGradientEndColor="{StaticResource GradientEndColor}"
+                    BorderGradientStartColor="{StaticResource GradientStartColor}"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    WidthRequest="50">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="PvBlueCardColor_Tapped" />
+                    </pancake:PancakeView.GestureRecognizers>
+                    <pancake:PancakeView
+                        x:Name="pvBlueContentCardColor"
+                        Margin="10"
+                        BackgroundGradientEndColor="#2360F7"
+                        BackgroundGradientStartColor="#5C2DFD"
+                        CornerRadius="20"
+                        HeightRequest="30"
+                        WidthRequest="30" />
+                </pancake:PancakeView>
+
+                <pancake:PancakeView
+                    x:Name="pvBlackCardColor"
+                    BorderGradientAngle="310"
+                    BorderGradientEndColor="{StaticResource GradientEndColor}"
+                    BorderGradientStartColor="{StaticResource GradientStartColor}"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    WidthRequest="50">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="PvBlackCardColor_Tapped" />
+                    </pancake:PancakeView.GestureRecognizers>
+                    <pancake:PancakeView
+                        x:Name="pvBlackContentCardColor"
+                        Margin="10"
+                        BackgroundGradientEndColor="#555555"
+                        BackgroundGradientStartColor="#101010"
+                        CornerRadius="20"
+                        HeightRequest="30"
+                        WidthRequest="30" />
+                </pancake:PancakeView>
+            </FlexLayout>
         </FlexLayout>
+
+        <StackLayout
+            Grid.Row="2"
+            Margin="10"
+            HeightRequest="50"
+            IsVisible="{Binding ChangeCardColorVisible, Converter={converter:InvertedBooleanConverter}}">
+            <StackLayout IsVisible="{Binding Step1Visible}">
+                <Label Margin="5,0,0,0" Text="número do cartão de crédito" />
+                <Entry Keyboard="Numeric" Text="{Binding Number}">
+                    <Entry.Behaviors>
+                        <behavior:MaskedBehavior Mask="XXXX XXXX XXXX XXXX" />
+                    </Entry.Behaviors>
+                </Entry>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding Step2Visible}">
+                <Label Margin="5,0,0,0" Text="validade" />
+                <Entry Keyboard="Numeric" Text="{Binding Validate}">
+                    <Entry.Behaviors>
+                        <behavior:MaskedBehavior Mask="XX/XX" />
+                    </Entry.Behaviors>
+                </Entry>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding Step3Visible}">
+                <Label Margin="5,0,0,0" Text="nome impresso no cartão" />
+                <Entry Keyboard="Chat" Text="{Binding Name}" />
+            </StackLayout>
+            <StackLayout IsVisible="{Binding Step4Visible}">
+                <Label Margin="5,0,0,0" Text="apelido do cartão" />
+                <Entry Text="{Binding Nickname}" />
+            </StackLayout>
+            <StackLayout IsVisible="{Binding Step5Visible}">
+                <Label Margin="5,0,0,0" Text="código de segurança CVV" />
+                <Entry
+                    Keyboard="Numeric"
+                    MaxLength="3"
+                    Text="{Binding CVV}" />
+            </StackLayout>
+        </StackLayout>
+
+        <pancake:PancakeView
+            Grid.Row="3"
+            Margin="20"
+            CornerRadius="25"
+            HeightRequest="50"
+            IsEnabled="{Binding CanNavigateNextStep}">
+            <pancake:PancakeView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding NextStepCommand}" />
+            </pancake:PancakeView.GestureRecognizers>
+            <pancake:PancakeView.Triggers>
+                <Trigger TargetType="pancake:PancakeView" Property="IsEnabled" Value="True">
+                    <Setter Property="BackgroundGradientAngle" Value="275" />
+                    <Setter Property="BackgroundGradientEndColor" Value="{StaticResource GradientEndColor}" />
+                    <Setter Property="BackgroundGradientStartColor" Value="{StaticResource GradientStartColor}" />
+                </Trigger>
+                <Trigger TargetType="pancake:PancakeView" Property="IsEnabled" Value="False">
+                    <Setter Property="BackgroundColor" Value="#E9E9E9" />
+                </Trigger>
+            </pancake:PancakeView.Triggers>
+            <Label
+                HorizontalTextAlignment="Center"
+                Text="continuar"
+                TextColor="{StaticResource TextColorWhite}"
+                VerticalTextAlignment="Center" />
+        </pancake:PancakeView>
     </Grid>
 </ContentPage>

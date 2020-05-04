@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace ItiClone.Behavior
+namespace ItiClone.Behaviors
 {
     public class MaskedBehavior : Behavior<Entry>
     {

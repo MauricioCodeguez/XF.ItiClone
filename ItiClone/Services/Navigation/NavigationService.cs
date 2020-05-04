@@ -70,19 +70,19 @@ namespace ItiClone.Services.Navigation
         }
 
 
-        public async Task PopToRootAsync() => await Application.Current.MainPage.Navigation.PopToRootAsync();
+        public async Task PopToRootAsync() => await Application.Current.MainPage.Navigation.PopToRootAsync(true);
 
         public async Task PushModalAsync<TViewModel>(params object[] args) where TViewModel : BaseViewModel
         {
             var page = Locator<TViewModel>(args);
 
-            await Application.Current.MainPage.Navigation.PushModalAsync(page);
+            await Application.Current.MainPage.Navigation.PushModalAsync(page, true);
             await (page.BindingContext as BaseViewModel).InitializeAsync(args);
         }
 
 
         public async Task PopModalAsync()
-            => await Application.Current.MainPage.Navigation.PopModalAsync();
+            => await Application.Current.MainPage.Navigation.PopModalAsync(true);
 
         public Task RemovePage(Type page)
         {

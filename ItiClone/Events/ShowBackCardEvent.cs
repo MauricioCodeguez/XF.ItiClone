@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ItiClone.Events
+﻿namespace ItiClone.Events
 {
     public class ShowBackCardEvent
     {
+        public ShowBackCardEvent()
+        {
+            SetInitialColor = false;
+        }
+
+        public bool SetInitialColor { get; set; }
     }
 }
