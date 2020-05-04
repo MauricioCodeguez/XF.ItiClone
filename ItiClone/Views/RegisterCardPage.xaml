@@ -3,6 +3,7 @@
     x:Class="ItiClone.Views.RegisterCardPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behavior="clr-namespace:ItiClone.Behavior"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -20,51 +21,101 @@
 
     <Grid VerticalOptions="FillAndExpand">
         <Grid.RowDefinitions>
+            <RowDefinition Height="5" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <BoxView
+                Grid.ColumnSpan="6"
+                BackgroundColor="{StaticResource WindowBackground}"
+                VerticalOptions="FillAndExpand" />
+            <BoxView
+                Grid.ColumnSpan="{Binding CurrentStep}"
+                BackgroundColor="{StaticResource TextColorOrange}"
+                VerticalOptions="FillAndExpand" />
+        </Grid>
+
         <Frame
+            x:Name="frCard"
+            Grid.Row="1"
             Margin="20,0"
+            Padding="0"
             BorderColor="#BFBFBF"
             CornerRadius="10"
-            HeightRequest="150"
+            HeightRequest="170"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="Center">
-            <FlexLayout Direction="Column" JustifyContent="SpaceBetween">
-                <Label Text="Bandeira" TextColor="{StaticResource TextColorOrange}" />
-                <Label
-                    FontSize="20"
-                    Text="apelido do cartão"
-                    TextColor="#DCDCDC" />
-                <Label
-                    FontSize="20"
-                    Text="XXXX XXXX XXXX XXXX"
-                    TextColor="{StaticResource TextColorOrange}" />
-                <Label
-                    FontSize="20"
-                    Text="NOME IMPRESSO"
-                    TextColor="#DCDCDC" />
-                <Label
-                    FontSize="20"
-                    HorizontalTextAlignment="End"
-                    Text="MM / AA"
-                    TextColor="#DCDCDC" />
-            </FlexLayout>
+            <Grid>
+                <FlexLayout
+                    x:Name="flFrontCard"
+                    Padding="20"
+                    Direction="Column"
+                    JustifyContent="SpaceBetween">
+                    <Label Text="Bandeira" TextColor="{StaticResource TextColorOrange}" />
+                    <Label
+                        FontSize="20"
+                        Text="{Binding NickNameCard}"
+                        TextColor="#DCDCDC" />
+                    <Label
+                        FontSize="20"
+                        Text="{Binding CardNumber}"
+                        TextColor="{StaticResource TextColorOrange}" />
+                    <Label
+                        FontSize="20"
+                        Text="{Binding CardName}"
+                        TextColor="#DCDCDC" />
+                    <Label
+                        FontSize="20"
+                        HorizontalTextAlignment="End"
+                        Text="{Binding ValidateCard}"
+                        TextColor="#DCDCDC" />
+                </FlexLayout>
+                <FlexLayout
+                    x:Name="flBackCard"
+                    Direction="Column"
+                    JustifyContent="SpaceEvenly"
+                    Opacity="0">
+                    <BoxView BackgroundColor="#1C2534" HeightRequest="50" />
+                    <Label
+                        Margin="0,0,35,0"
+                        FontSize="20"
+                        HorizontalTextAlignment="End"
+                        Text="{Binding CVV}"
+                        TextColor="{StaticResource TextColorOrange}"
+                        VerticalTextAlignment="Center" />
+                </FlexLayout>
+            </Grid>
         </Frame>
 
         <FlexLayout
-            Grid.Row="1"
+            Grid.Row="2"
             Margin="10"
             Direction="Column"
             HeightRequest="150">
             <Label Margin="5,0,0,0" Text="número do cartão de crédito" />
-            <Entry />
+            <Entry Keyboard="Numeric">
+                <Entry.Behaviors>
+                    <behavior:MaskedBehavior Mask="XXXX XXXX XXXX XXXX" />
+                </Entry.Behaviors>
+            </Entry>
             <pancake:PancakeView
                 Margin="0,20,0,0"
                 CornerRadius="25"
                 HeightRequest="50"
                 IsEnabled="True">
+                <pancake:PancakeView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NextStepCommand}" />
+                </pancake:PancakeView.GestureRecognizers>
                 <pancake:PancakeView.Triggers>
                     <Trigger TargetType="pancake:PancakeView" Property="IsEnabled" Value="True">
                         <Setter Property="BackgroundGradientAngle" Value="275" />
