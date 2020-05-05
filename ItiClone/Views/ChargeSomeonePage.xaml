@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="ItiClone.Views.ChargeSomeonePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:ItiClone.Converters"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:render="clr-namespace:ItiClone.Renderers"
+    mc:Ignorable="d">
+    <NavigationPage.TitleView>
+        <Label
+            Margin="0,0,70,0"
+            FontSize="16"
+            HorizontalTextAlignment="Center"
+            Text="{Binding Title}"
+            TextColor="{StaticResource TextColorWhite}"
+            VerticalTextAlignment="Center" />
+    </NavigationPage.TitleView>
+
+    <ContentPage Title="via transferência" TabIndex="0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackLayout Margin="30,0" VerticalOptions="Center">
+                <Image Source="mycardsicon" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    HorizontalTextAlignment="Center"
+                    Text="você ainda não possui contatos por aqui"
+                    TextColor="#2A2A2A" />
+                <Label
+                    FontSize="16"
+                    HorizontalTextAlignment="Center"
+                    Text="libere o acesso aos seus contatos e descubra quem já tem iti"
+                    TextColor="#6B6B6B" />
+            </StackLayout>
+            <pancake:PancakeView
+                Grid.Row="1"
+                Margin="20"
+                BackgroundGradientAngle="275"
+                BackgroundGradientEndColor="{StaticResource GradientEndColor}"
+                BackgroundGradientStartColor="{StaticResource GradientStartColor}"
+                CornerRadius="25"
+                HeightRequest="50">
+                <Label
+                    HorizontalTextAlignment="Center"
+                    Text="liberar acesso aos contatos"
+                    TextColor="{StaticResource TextColorWhite}"
+                    VerticalTextAlignment="Center" />
+            </pancake:PancakeView>
+        </Grid>
+    </ContentPage>
+
+    <ContentPage Title="via código" TabIndex="1">
+        <Grid BackgroundColor="#334157">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackLayout Margin="30,0" VerticalOptions="Center">
+                <Label
+                    FontSize="14"
+                    HorizontalTextAlignment="Center"
+                    Text="digite o valor"
+                    TextColor="White" />
+                <render:EntryBorderless
+                    x:Name="entryValue"
+                    FontSize="35"
+                    HorizontalOptions="FillAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Keyboard="Numeric"
+                    Placeholder="{Binding PlaceHolder}"
+                    PlaceholderColor="White"
+                    Text="{Binding Value, Converter={converter:CurrencyConverter}}"
+                    TextChanged="EntryValue_TextChanged"
+                    TextColor="White" />
+                <pancake:PancakeView
+                    x:Name="pvBorder"
+                    Margin="0,-10,0,0"
+                    BackgroundGradientAngle="275"
+                    BackgroundGradientEndColor="{StaticResource WindowBackground}"
+                    BackgroundGradientStartColor="{StaticResource WindowBackground}"
+                    HeightRequest="2">
+                    <Label
+                        HorizontalTextAlignment="Center"
+                        Text="continuar"
+                        TextColor="{StaticResource TextColorWhite}"
+                        VerticalTextAlignment="Center" />
+                </pancake:PancakeView>
+                <Label
+                    FontSize="14"
+                    HorizontalTextAlignment="Center"
+                    TextColor="White">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="limite de " />
+                            <Span Text="{Binding ActualLimit, Converter={converter:CurrencyConverter}}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+            <pancake:PancakeView
+                Grid.Row="1"
+                Margin="20"
+                BackgroundGradientAngle="275"
+                BackgroundGradientEndColor="{StaticResource GradientEndColor}"
+                BackgroundGradientStartColor="{StaticResource GradientStartColor}"
+                CornerRadius="25"
+                HeightRequest="50">
+                <Label
+                    HorizontalTextAlignment="Center"
+                    Text="continuar"
+                    TextColor="{StaticResource TextColorWhite}"
+                    VerticalTextAlignment="Center" />
+            </pancake:PancakeView>
+        </Grid>
+    </ContentPage>
+</TabbedPage>

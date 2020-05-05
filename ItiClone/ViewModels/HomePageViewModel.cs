@@ -93,6 +93,8 @@ namespace ItiClone.ViewModels
 
             if (action.ActionType == Models.ActionType.AddCard)
                 await NavigationService.Current.PushAsync<RegisterCardPageViewModel>();
+            else if (action.ActionType == Models.ActionType.ChargeSomeone)
+                await NavigationService.Current.PushAsync<ChargeSomeonePageViewModel>();
         }
     }
 }
