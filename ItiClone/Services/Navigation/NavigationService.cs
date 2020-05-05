@@ -63,12 +63,7 @@ namespace ItiClone.Services.Navigation
             return page;
         }
 
-        public async Task PopAsync(params object[] args)
-        {
-            var page = await Application.Current.MainPage.Navigation.PopAsync();
-            await (page.BindingContext as BaseViewModel).InitializeAsync(args);
-        }
-
+        public async Task PopAsync() => await Application.Current.MainPage.Navigation.PopAsync(true);
 
         public async Task PopToRootAsync() => await Application.Current.MainPage.Navigation.PopToRootAsync(true);
 

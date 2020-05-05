@@ -1,7 +1,5 @@
 ﻿using ItiClone.Events;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using ItiClone.Services.Navigation;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -10,7 +8,7 @@ namespace ItiClone.ViewModels
 {
     public class RegisterCardPageViewModel : BaseViewModel
     {
-        private readonly int _totalSteps = 6;
+        private readonly int _totalSteps = 7;
 
         private string _nickNameCard;
         public string NickNameCard
@@ -121,7 +119,23 @@ namespace ItiClone.ViewModels
         public int CurrentStep
         {
             get { return _currentStep; }
-            set { SetProperty(ref _currentStep, value, onChanged: () => { OnPropertyChanged(nameof(ChangeCardColorVisible)); }); }
+            set
+            {
+                SetProperty(ref _currentStep, value, onChanged: () =>
+                {
+                    OnPropertyChanged(nameof(LastStepVisible));
+
+                    if (!LastStepVisible)
+                        OnPropertyChanged(nameof(ChangeCardColorVisible));
+                });
+            }
+        }
+
+        private string _cpfCnpj;
+        public string CpfCnpj
+        {
+            get { return _cpfCnpj; }
+            set { SetProperty(ref _cpfCnpj, value, onChanged: () => { CPFCNPJCanNavigate(); }); }
         }
 
         private bool _canNavigateNextStep;
@@ -132,6 +146,8 @@ namespace ItiClone.ViewModels
         }
 
         public bool ChangeCardColorVisible { get => CurrentStep == 6; }
+
+        public bool LastStepVisible { get => CurrentStep == 7; }
 
         #region [ Steps ]
 
@@ -222,7 +238,7 @@ namespace ItiClone.ViewModels
             _cvvCard = "CVV";
             _canNavigateNextStep = false;
             ChangeStepVisibily();
-            NextStepCommand = new Command(NextStepCommandExecute, () => CanNavigateNextStep);
+            NextStepCommand = new Command(async () => await NextStepCommandExecute(), () => CanNavigateNextStep);
             GoBackStepCommand = new Command(GoBackStepCommandExecute);
             ChangeStepColorCommand = new Command<string>((c) => ChangeStepColor(c));
         }
@@ -233,12 +249,12 @@ namespace ItiClone.ViewModels
             return Task.CompletedTask;
         }
 
-        private void NextStepCommandExecute()
+        private async Task NextStepCommandExecute()
         {
             CanNavigateNextStep = false;
 
             if (CurrentStep == _totalSteps)
-                SaveCard();
+                await SaveCard();
             else
             {
                 CurrentStep++;
@@ -312,6 +328,8 @@ namespace ItiClone.ViewModels
 
         private void CVVCanNavigate() => CanNavigateNextStep = CVV != null && CVV.Length == 3;
 
+        private void CPFCNPJCanNavigate() => CanNavigateNextStep = CpfCnpj != null && CpfCnpj.Length > 0;
+
         private void StepCanNavigate()
         {
             if (CurrentStep == 1)
@@ -322,10 +340,15 @@ namespace ItiClone.ViewModels
                 NameCanNavigate();
             else if (CurrentStep == 4)
                 NicknameCanNavigate();
-            else
+            else if (CurrentStep == 5 || CurrentStep == 6)
                 CVVCanNavigate();
+            else
+                CPFCNPJCanNavigate();
         }
 
-        private void SaveCard() { }
+        private async Task SaveCard() 
+        {
+            await NavigationService.Current.PopAsync();
+        }
     }
 }
