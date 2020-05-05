@@ -61,22 +61,24 @@
             </Grid.RowDefinitions>
             <StackLayout Margin="30" Spacing="0">
                 <Label
-                    FontSize="27"
+                    FontSize="24"
                     Text="transfira de qualquer banco"
                     TextColor="{StaticResource TextColorWhite}" />
                 <Label
-                    FontSize="18"
+                    FontSize="16"
                     Text="toque nas informações para copiar"
                     TextColor="{StaticResource TextColorWhite}" />
                 <StackLayout Margin="0,20" Spacing="20">
                     <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
                         <Label
+                            FontSize="16"
                             Text="agência"
                             TextColor="{StaticResource TextColorWhite}"
                             VerticalTextAlignment="Center" />
                         <StackLayout Orientation="Horizontal" Spacing="2">
                             <Label
                                 FontAttributes="Bold"
+                                FontSize="16"
                                 Text="0000"
                                 TextColor="{StaticResource TextColorOrange}"
                                 VerticalTextAlignment="Center" />
@@ -90,12 +92,14 @@
                     </FlexLayout>
                     <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
                         <Label
+                            FontSize="16"
                             Text="conta"
                             TextColor="{StaticResource TextColorWhite}"
                             VerticalTextAlignment="Center" />
                         <StackLayout Orientation="Horizontal" Spacing="2">
                             <Label
                                 FontAttributes="Bold"
+                                FontSize="16"
                                 Text="0000000000-0"
                                 TextColor="{StaticResource TextColorOrange}"
                                 VerticalTextAlignment="Center" />
@@ -109,12 +113,14 @@
                     </FlexLayout>
                     <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
                         <Label
+                            FontSize="16"
                             Text="CPF"
                             TextColor="{StaticResource TextColorWhite}"
                             VerticalTextAlignment="Center" />
                         <StackLayout Orientation="Horizontal" Spacing="2">
                             <Label
                                 FontAttributes="Bold"
+                                FontSize="16"
                                 Text="000.000.000-00"
                                 TextColor="{StaticResource TextColorOrange}"
                                 VerticalTextAlignment="Center" />
@@ -128,12 +134,14 @@
                     </FlexLayout>
                     <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
                         <Label
+                            FontSize="16"
                             Text="banco"
                             TextColor="{StaticResource TextColorWhite}"
                             VerticalTextAlignment="Center" />
                         <StackLayout Orientation="Horizontal" Spacing="2">
                             <Label
                                 FontAttributes="Bold"
+                                FontSize="16"
                                 Text="Itaú (código 000)"
                                 TextColor="{StaticResource TextColorOrange}"
                                 VerticalTextAlignment="Center" />

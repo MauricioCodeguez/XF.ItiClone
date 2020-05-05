@@ -25,8 +25,8 @@ namespace ItiClone.Views
         {
             base.OnAppearing();
 
-            flFooter.TranslateTo(0, 50, 0);
-            await FooterAnimation(1000);
+            await SetFooterInitialState();
+            await FooterAnimation(200);
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -73,9 +73,7 @@ namespace ItiClone.Views
             Task translateStkSecundario = stkSecundary.TranslateTo(0, stkPrimary.HeightRequest * -1, _duration);
 
             await Task.WhenAll(new List<Task> { translateStkPrincipal, translateStkSecundario });
-            await flFooter.FadeTo(0, 0);
-            await flFooter.TranslateTo(0, 50, 0);
-            await gridArrowUp.TranslateTo(0, 0);
+            await SetFooterInitialState();
         }
 
         private async void Header_Tapped(object sender, EventArgs e)
@@ -96,6 +94,15 @@ namespace ItiClone.Views
             arrowUpIcon.TextColor = Color.FromHex("#2A3548");
 
             await gridArrowUp.TranslateTo(0, -5, 700, Easing.SpringOut);
+        }
+
+        private async Task SetFooterInitialState()
+        {
+            var task1 = flFooter.FadeTo(0, 0);
+            var task2 = flFooter.TranslateTo(0, 50, 0);
+            var task3 = gridArrowUp.TranslateTo(0, 0);
+
+            await Task.WhenAll(new List<Task> { task1, task2, task3 });
         }
 
         private async Task ShowPrimary()
