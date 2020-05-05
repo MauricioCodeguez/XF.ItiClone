@@ -260,7 +260,10 @@ namespace ItiClone.ViewModels
                 CurrentStep++;
 
                 ChangeStepVisibily();
-                ChangeStepColor();
+
+                if (CurrentStep != 7)
+                    ChangeStepColor();
+
                 StepCanNavigate();
 
                 if (CurrentStep == 4 && string.IsNullOrEmpty(Nickname))
@@ -278,7 +281,10 @@ namespace ItiClone.ViewModels
             CurrentStep--;
 
             ChangeStepVisibily();
-            ChangeStepColor();
+
+            if (CurrentStep != 6)
+                ChangeStepColor();
+
             StepCanNavigate();
 
             if (CurrentStep == 4)
@@ -346,7 +352,7 @@ namespace ItiClone.ViewModels
                 CPFCNPJCanNavigate();
         }
 
-        private async Task SaveCard() 
+        private async Task SaveCard()
         {
             await NavigationService.Current.PopAsync();
         }
