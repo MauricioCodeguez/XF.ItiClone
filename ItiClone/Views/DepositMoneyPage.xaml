@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+    x:Class="ItiClone.Views.DepositMoneyPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:ItiClone.Converters"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:if="clr-namespace:ItiClone.Utils"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:render="clr-namespace:ItiClone.Renderers"
+    mc:Ignorable="d">
+    <NavigationPage.TitleView>
+        <Label
+            Margin="0,0,70,0"
+            FontSize="16"
+            HorizontalTextAlignment="Center"
+            Text="{Binding Title}"
+            TextColor="{StaticResource TextColorWhite}"
+            VerticalTextAlignment="Center" />
+    </NavigationPage.TitleView>
+
+    <ContentPage Title="via boleto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackLayout Margin="30,0" VerticalOptions="Center">
+                <Image HeightRequest="150" Source="pencilicon" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    HorizontalTextAlignment="Center"
+                    Text="Não conseguimos checar seu limite para criação de boletos"
+                    TextColor="#2A2A2A" />
+                <Label
+                    FontSize="16"
+                    HorizontalTextAlignment="Center"
+                    Text="opa! não estávamos esperando por este erro. quer tentar de novo?"
+                    TextColor="#6B6B6B" />
+            </StackLayout>
+            <Button
+                Grid.Row="1"
+                Margin="20"
+                BackgroundColor="Transparent"
+                BorderColor="#6B6B6B"
+                BorderWidth="1"
+                CornerRadius="25"
+                HeightRequest="50"
+                Text="tentar de novo"
+                TextColor="#6B6B6B" />
+        </Grid>
+    </ContentPage>
+
+    <ContentPage Title="via transferência">
+        <Grid BackgroundColor="#334157">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackLayout Margin="30" Spacing="0">
+                <Label
+                    FontSize="27"
+                    Text="transfira de qualquer banco"
+                    TextColor="{StaticResource TextColorWhite}" />
+                <Label
+                    FontSize="18"
+                    Text="toque nas informações para copiar"
+                    TextColor="{StaticResource TextColorWhite}" />
+                <StackLayout Margin="0,20" Spacing="20">
+                    <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                        <Label
+                            Text="agência"
+                            TextColor="{StaticResource TextColorWhite}"
+                            VerticalTextAlignment="Center" />
+                        <StackLayout Orientation="Horizontal" Spacing="2">
+                            <Label
+                                FontAttributes="Bold"
+                                Text="0000"
+                                TextColor="{StaticResource TextColorOrange}"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                FontFamily="MaterialDesign"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="{x:Static if:IconFont.ContentCopy}"
+                                TextColor="{StaticResource TextColorOrange}" />
+                        </StackLayout>
+                    </FlexLayout>
+                    <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                        <Label
+                            Text="conta"
+                            TextColor="{StaticResource TextColorWhite}"
+                            VerticalTextAlignment="Center" />
+                        <StackLayout Orientation="Horizontal" Spacing="2">
+                            <Label
+                                FontAttributes="Bold"
+                                Text="0000000000-0"
+                                TextColor="{StaticResource TextColorOrange}"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                FontFamily="MaterialDesign"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="{x:Static if:IconFont.ContentCopy}"
+                                TextColor="{StaticResource TextColorOrange}" />
+                        </StackLayout>
+                    </FlexLayout>
+                    <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                        <Label
+                            Text="CPF"
+                            TextColor="{StaticResource TextColorWhite}"
+                            VerticalTextAlignment="Center" />
+                        <StackLayout Orientation="Horizontal" Spacing="2">
+                            <Label
+                                FontAttributes="Bold"
+                                Text="000.000.000-00"
+                                TextColor="{StaticResource TextColorOrange}"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                FontFamily="MaterialDesign"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="{x:Static if:IconFont.ContentCopy}"
+                                TextColor="{StaticResource TextColorOrange}" />
+                        </StackLayout>
+                    </FlexLayout>
+                    <FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+                        <Label
+                            Text="banco"
+                            TextColor="{StaticResource TextColorWhite}"
+                            VerticalTextAlignment="Center" />
+                        <StackLayout Orientation="Horizontal" Spacing="2">
+                            <Label
+                                FontAttributes="Bold"
+                                Text="Itaú (código 000)"
+                                TextColor="{StaticResource TextColorOrange}"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                FontFamily="MaterialDesign"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                Text="{x:Static if:IconFont.ContentCopy}"
+                                TextColor="{StaticResource TextColorOrange}" />
+                        </StackLayout>
+                    </FlexLayout>
+                </StackLayout>
+            </StackLayout>
+            <Button
+                Grid.Row="1"
+                Margin="20"
+                BackgroundColor="Transparent"
+                BorderColor="{StaticResource TextColorWhite}"
+                BorderWidth="1"
+                CornerRadius="25"
+                HeightRequest="50"
+                Text="compartilhar meus dados"
+                TextColor="{StaticResource TextColorWhite}" />
+        </Grid>
+    </ContentPage>
+
+</TabbedPage>

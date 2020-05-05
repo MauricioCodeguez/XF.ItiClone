@@ -1,4 +1,5 @@
 ﻿using ItiClone.Services.Navigation;
+using ItiClone.Views;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -92,9 +93,11 @@ namespace ItiClone.ViewModels
                 return;
 
             if (action.ActionType == Models.ActionType.AddCard)
-                await NavigationService.Current.PushAsync<RegisterCardPageViewModel>();
+                await Navigation.PushAsync<RegisterCardPageViewModel>();
             else if (action.ActionType == Models.ActionType.ChargeSomeone)
-                await NavigationService.Current.PushAsync<ChargeSomeonePageViewModel>();
+                await Navigation.PushAsync<ChargeSomeonePageViewModel>();
+            else if (action.ActionType == Models.ActionType.DepositMoney)
+                await Navigation.PushAsync<DepositMoneyPageViewModel>();
         }
     }
 }

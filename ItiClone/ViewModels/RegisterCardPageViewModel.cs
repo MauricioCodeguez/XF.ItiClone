@@ -354,7 +354,7 @@ namespace ItiClone.ViewModels
 
         private async Task SaveCard()
         {
-            await NavigationService.Current.PopAsync();
+            await Navigation.PopAsync();
         }
     }
 }
