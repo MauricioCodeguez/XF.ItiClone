@@ -19,12 +19,21 @@ namespace ItiClone.ViewModels
             { 
                 SetProperty(ref _value, value, onChanged: () => 
                 {
+                    CanContinue = _value.HasValue;
+
                     if (!_value.HasValue || _value <= ActualLimit)
                         _lastValue = _value;
                     else
                         Value = _lastValue;
                 }); 
             }
+        }
+
+        private bool _canContinue;
+        public bool CanContinue
+        {
+            get { return _canContinue; }
+            set { SetProperty(ref _canContinue, value); }
         }
 
         public string PlaceHolder { get => Convert.ToDecimal(0).ToString("C"); }

@@ -107,14 +107,22 @@
             <pancake:PancakeView
                 Grid.Row="1"
                 Margin="20"
-                BackgroundGradientAngle="275"
-                BackgroundGradientEndColor="{StaticResource GradientEndColor}"
-                BackgroundGradientStartColor="{StaticResource GradientStartColor}"
                 CornerRadius="25"
-                HeightRequest="50">
+                HeightRequest="50"
+                IsEnabled="{Binding CanContinue}">
                 <pancake:PancakeView.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding CreateQrCodeCommand}" />
                 </pancake:PancakeView.GestureRecognizers>
+                <pancake:PancakeView.Triggers>
+                    <Trigger TargetType="pancake:PancakeView" Property="IsEnabled" Value="True">
+                        <Setter Property="BackgroundGradientAngle" Value="275" />
+                        <Setter Property="BackgroundGradientEndColor" Value="{StaticResource GradientEndColor}" />
+                        <Setter Property="BackgroundGradientStartColor" Value="{StaticResource GradientStartColor}" />
+                    </Trigger>
+                    <Trigger TargetType="pancake:PancakeView" Property="IsEnabled" Value="False">
+                        <Setter Property="BackgroundColor" Value="#E9E9E9" />
+                    </Trigger>
+                </pancake:PancakeView.Triggers>
                 <Label
                     HorizontalTextAlignment="Center"
                     Text="continuar"
