@@ -17,6 +17,7 @@ namespace ItiClone.Views
         public ChargeSomeoneQrCodePage()
         {
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
         }
 
         private void canvasView_PaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e)

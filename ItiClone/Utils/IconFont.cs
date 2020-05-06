@@ -8,5 +8,6 @@
         public const string ChevronDown = "\U000f0140";
         public const string Barcode = "\U000f0071";
         public const string ContentCopy = "\U000f018f";
+        public const string Close = "\U000f0156";
     }
 }

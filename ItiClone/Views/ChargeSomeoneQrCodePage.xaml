@@ -3,11 +3,52 @@
     x:Class="ItiClone.Views.ChargeSomeoneQrCodePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:ItiClone.Converters"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:if="clr-namespace:ItiClone.Utils"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:sk="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+    xmlns:zxcm="clr-namespace:ZXing.Common;assembly=zxing.portable"
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
     mc:Ignorable="d">
+
+    <NavigationPage.TitleView>
+        <Grid Margin="0,0,20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="70" />
+            </Grid.ColumnDefinitions>
+            <Label
+                Grid.ColumnSpan="2"
+                FontSize="16"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Title}"
+                TextColor="{StaticResource TextColorWhite}"
+                VerticalTextAlignment="Center" />
+            <Label
+                Grid.Column="1"
+                FontFamily="MaterialDesign"
+                FontSize="30"
+                HorizontalOptions="End"
+                Text="{x:Static if:IconFont.Close}"
+                TextColor="{StaticResource TextColorWhite}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CloseCodeCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+    </NavigationPage.TitleView>
+
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding CloseCodeCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="MaterialDesign"
+                    Glyph="{x:Static if:IconFont.Close}"
+                    Color="{StaticResource TextColorWhite}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>-->
 
     <ContentPage.Content>
         <Grid BackgroundColor="{StaticResource WindowBackground}">
@@ -30,7 +71,7 @@
                     <Label
                         FontSize="30"
                         HorizontalTextAlignment="Center"
-                        Text="R$ 50,00"
+                        Text="{Binding Value, Converter={converter:CurrencyConverter}}"
                         TextColor="Black"
                         VerticalTextAlignment="Center" />
                     <Grid
@@ -68,6 +109,21 @@
                             VerticalOptions="Center"
                             WidthRequest="20" />
                     </Grid>
+                    <StackLayout
+                        Grid.Row="2"
+                        Spacing="15"
+                        VerticalOptions="Center">
+                        <Label HorizontalTextAlignment="Center" Text="mostre o código iti para receber" />
+                        <zxing:ZXingBarcodeImageView
+                            BarcodeFormat="QR_CODE"
+                            BarcodeValue="{Binding BarCodeValue}"
+                            HeightRequest="300"
+                            WidthRequest="300">
+                            <zxing:ZXingBarcodeImageView.BarcodeOptions>
+                                <zxcm:EncodingOptions Width="300" Height="300" />
+                            </zxing:ZXingBarcodeImageView.BarcodeOptions>
+                        </zxing:ZXingBarcodeImageView>
+                    </StackLayout>
                 </Grid>
             </Frame>
             <Button
@@ -76,6 +132,7 @@
                 BackgroundColor="Transparent"
                 BorderColor="{StaticResource TextColorWhite}"
                 BorderWidth="1"
+                Command="{Binding CreateNewCodeCommand}"
                 CornerRadius="25"
                 HeightRequest="50"
                 Text="criar novo código"
