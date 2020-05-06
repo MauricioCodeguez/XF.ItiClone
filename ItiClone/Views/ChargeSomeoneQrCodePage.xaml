@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ItiClone.Views.ChargeSomeoneQrCodePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:sk="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+    mc:Ignorable="d">
+
+    <ContentPage.Content>
+        <Grid BackgroundColor="{StaticResource WindowBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Frame
+                Margin="30"
+                Padding="0"
+                BackgroundColor="White"
+                CornerRadius="10"
+                VerticalOptions="FillAndExpand">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        FontSize="30"
+                        HorizontalTextAlignment="Center"
+                        Text="R$ 50,00"
+                        TextColor="Black"
+                        VerticalTextAlignment="Center" />
+                    <Grid
+                        Grid.Row="1"
+                        ColumnSpacing="0"
+                        VerticalOptions="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10" />
+                        </Grid.ColumnDefinitions>
+                        <Frame
+                            Margin="-14,0,0,0"
+                            Padding="0"
+                            BackgroundColor="{StaticResource WindowBackground}"
+                            CornerRadius="10"
+                            HeightRequest="20"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="20" />
+                        <sk:SKCanvasView
+                            x:Name="canvasView"
+                            Grid.Column="1"
+                            Margin="-2,9,0,0"
+                            PaintSurface="canvasView_PaintSurface"
+                            VerticalOptions="Center" />
+                        <Frame
+                            Grid.Column="2"
+                            Margin="0,0,-12,0"
+                            Padding="0"
+                            BackgroundColor="{StaticResource WindowBackground}"
+                            CornerRadius="10"
+                            HeightRequest="20"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="20" />
+                    </Grid>
+                </Grid>
+            </Frame>
+            <Button
+                Grid.Row="1"
+                Margin="20"
+                BackgroundColor="Transparent"
+                BorderColor="{StaticResource TextColorWhite}"
+                BorderWidth="1"
+                CornerRadius="25"
+                HeightRequest="50"
+                Text="criar novo código"
+                TextColor="{StaticResource TextColorWhite}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

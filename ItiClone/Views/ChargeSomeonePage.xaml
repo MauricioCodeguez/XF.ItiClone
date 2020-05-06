@@ -112,6 +112,9 @@
                 BackgroundGradientStartColor="{StaticResource GradientStartColor}"
                 CornerRadius="25"
                 HeightRequest="50">
+                <pancake:PancakeView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CreateQrCodeCommand}" />
+                </pancake:PancakeView.GestureRecognizers>
                 <Label
                     HorizontalTextAlignment="Center"
                     Text="continuar"
