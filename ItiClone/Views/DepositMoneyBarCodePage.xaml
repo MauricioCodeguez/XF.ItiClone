@@ -95,12 +95,12 @@
                             HeightRequest="1"
                             HorizontalOptions="FillAndExpand" />
                         <Label
-                            Margin="20,20,20,50"
+                            Margin="10,20,10,50"
                             HorizontalTextAlignment="Center"
                             TextColor="#757575">
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="após o pagamento do boleto, seu dinheiro no cai no iti " />
+                                    <Span Text="após o pagamento do boleto, seu dinheiro cai no iti " />
                                     <Span FontAttributes="Bold" Text="em até 1 dia útil " />
                                 </FormattedString>
                             </Label.FormattedText>
@@ -144,7 +144,7 @@
                     </Grid>
                     <StackLayout
                         Grid.Row="2"
-                        Margin="30,0"
+                        Margin="15,0"
                         VerticalOptions="Center">
                         <Label
                             FontAttributes="Bold"
