@@ -16,5 +16,19 @@ namespace ItiClone.Views
         {
             InitializeComponent();
         }
+
+        private void EntryValue_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(e.NewTextValue))
+                SetEntryBorderColor((Color)Application.Current.Resources["GradientStartColor"], (Color)Application.Current.Resources["GradientEndColor"]);
+            else
+                SetEntryBorderColor((Color)Application.Current.Resources["WindowBackground"], (Color)Application.Current.Resources["WindowBackground"]);
+        }
+
+        private void SetEntryBorderColor(Color startColor, Color endColor)
+        {
+            pvBorder.BackgroundGradientStartColor = startColor;
+            pvBorder.BackgroundGradientEndColor = endColor;
+        }
     }
 }

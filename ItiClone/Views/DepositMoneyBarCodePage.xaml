@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ItiClone.Views.DepositMoneyBarCodePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:ItiClone.Converters"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:if="clr-namespace:ItiClone.Utils"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:sk="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+    xmlns:zxcm="clr-namespace:ZXing.Common;assembly=zxing.portable"
+    xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+    mc:Ignorable="d">
+
+    <NavigationPage.TitleView>
+        <Grid Margin="0,0,20,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="70" />
+            </Grid.ColumnDefinitions>
+            <Label
+                Grid.ColumnSpan="2"
+                FontSize="16"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Title}"
+                TextColor="{StaticResource TextColorWhite}"
+                VerticalTextAlignment="Center" />
+            <Label
+                Grid.Column="1"
+                FontFamily="MaterialDesign"
+                FontSize="30"
+                HorizontalOptions="End"
+                Text="{x:Static if:IconFont.Close}"
+                TextColor="{StaticResource TextColorWhite}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CloseCodeCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <Grid BackgroundColor="{StaticResource WindowBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Frame
+                Margin="30,50"
+                Padding="0"
+                BackgroundColor="White"
+                CornerRadius="10"
+                VerticalOptions="FillAndExpand">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackLayout Margin="30,20,30,0">
+                        <FlexLayout JustifyContent="SpaceBetween">
+                            <Label
+                                FontSize="18"
+                                Text="valor"
+                                TextColor="#757575"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                Text="{Binding Value, Converter={converter:CurrencyConverter}}"
+                                TextColor="#2A2A2A"
+                                VerticalTextAlignment="Center" />
+                        </FlexLayout>
+                        <BoxView
+                            BackgroundColor="#DCDCDC"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand" />
+                        <FlexLayout JustifyContent="SpaceBetween">
+                            <Label
+                                FontSize="18"
+                                Text="vencimento"
+                                TextColor="#757575"
+                                VerticalTextAlignment="Center" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="20"
+                                Text="{Binding ExpiryDate, Converter={converter:DateTimeToTextConverter}}"
+                                TextColor="#2A2A2A"
+                                VerticalTextAlignment="Center" />
+                        </FlexLayout>
+                        <BoxView
+                            BackgroundColor="#DCDCDC"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand" />
+                        <Label
+                            Margin="20,20,20,50"
+                            HorizontalTextAlignment="Center"
+                            TextColor="#757575">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="após o pagamento do boleto, seu dinheiro no cai no iti " />
+                                    <Span FontAttributes="Bold" Text="em até 1 dia útil " />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+
+                    <Grid
+                        Grid.Row="1"
+                        ColumnSpacing="0"
+                        VerticalOptions="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10" />
+                        </Grid.ColumnDefinitions>
+                        <Frame
+                            Margin="-14,0,0,0"
+                            Padding="0"
+                            BackgroundColor="{StaticResource WindowBackground}"
+                            CornerRadius="10"
+                            HeightRequest="20"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="20" />
+                        <sk:SKCanvasView
+                            x:Name="canvasView"
+                            Grid.Column="1"
+                            Margin="-2,9,0,0"
+                            PaintSurface="canvasView_PaintSurface"
+                            VerticalOptions="Center" />
+                        <Frame
+                            Grid.Column="2"
+                            Margin="0,0,-12,0"
+                            Padding="0"
+                            BackgroundColor="{StaticResource WindowBackground}"
+                            CornerRadius="10"
+                            HeightRequest="20"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="20" />
+                    </Grid>
+                    <StackLayout
+                        Grid.Row="2"
+                        Margin="30,0"
+                        VerticalOptions="Center">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            Text="34191.09008 47891.402522 50059.44003 6 82540000035000"
+                            TextColor="#2A2A2A" />
+                        <zxing:ZXingBarcodeImageView
+                            Margin="0,-30,0,0"
+                            BarcodeFormat="CODE_39"
+                            BarcodeValue="34191.09008 47891.402522 50059.44003 6 82540000035000"
+                            HeightRequest="150"
+                            WidthRequest="500">
+                            <zxing:ZXingBarcodeImageView.BarcodeOptions>
+                                <zxcm:EncodingOptions Width="500" Height="150" />
+                            </zxing:ZXingBarcodeImageView.BarcodeOptions>
+                        </zxing:ZXingBarcodeImageView>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <pancake:PancakeView
+                Grid.Row="1"
+                Margin="20,0"
+                BackgroundGradientAngle="275"
+                BackgroundGradientEndColor="{StaticResource GradientEndColor}"
+                BackgroundGradientStartColor="{StaticResource GradientStartColor}"
+                CornerRadius="25"
+                HeightRequest="50">
+                <Label
+                    HorizontalTextAlignment="Center"
+                    Text="copiar código"
+                    TextColor="{StaticResource TextColorWhite}"
+                    VerticalTextAlignment="Center" />
+            </pancake:PancakeView>
+
+            <Button
+                Grid.Row="2"
+                Margin="20,5,20,20"
+                BackgroundColor="Transparent"
+                BorderColor="{StaticResource TextColorWhite}"
+                BorderWidth="1"
+                CornerRadius="25"
+                HeightRequest="50"
+                Text="compartilhar"
+                TextColor="{StaticResource TextColorWhite}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

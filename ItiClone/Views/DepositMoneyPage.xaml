@@ -22,34 +22,111 @@
 
     <ContentPage Title="via boleto">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <StackLayout Margin="30,0" VerticalOptions="Center">
-                <Image HeightRequest="150" Source="pencilicon" />
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="18"
-                    HorizontalTextAlignment="Center"
-                    Text="Não conseguimos checar seu limite para criação de boletos"
-                    TextColor="#2A2A2A" />
-                <Label
-                    FontSize="16"
-                    HorizontalTextAlignment="Center"
-                    Text="opa! não estávamos esperando por este erro. quer tentar de novo?"
+            <Grid IsVisible="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackLayout Margin="30,0" VerticalOptions="Center">
+                    <Image HeightRequest="150" Source="pencilicon" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        Text="Não conseguimos checar seu limite para criação de boletos"
+                        TextColor="#2A2A2A" />
+                    <Label
+                        FontSize="16"
+                        HorizontalTextAlignment="Center"
+                        Text="opa! não estávamos esperando por este erro. quer tentar de novo?"
+                        TextColor="#6B6B6B" />
+                </StackLayout>
+                <Button
+                    Grid.Row="1"
+                    Margin="20"
+                    BackgroundColor="Transparent"
+                    BorderColor="#6B6B6B"
+                    BorderWidth="1"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    Text="tentar de novo"
                     TextColor="#6B6B6B" />
-            </StackLayout>
-            <Button
-                Grid.Row="1"
-                Margin="20"
-                BackgroundColor="Transparent"
-                BorderColor="#6B6B6B"
-                BorderWidth="1"
-                CornerRadius="25"
-                HeightRequest="50"
-                Text="tentar de novo"
-                TextColor="#6B6B6B" />
+            </Grid>
+            <Grid BackgroundColor="#334157">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackLayout Margin="30,0" VerticalOptions="Center">
+                    <Label
+                        FontSize="14"
+                        HorizontalTextAlignment="Center"
+                        Text="digite o valor"
+                        TextColor="White" />
+                    <render:EntryBorderless
+                        x:Name="entryValue"
+                        FontSize="35"
+                        HorizontalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Center"
+                        Keyboard="Numeric"
+                        Placeholder="{Binding PlaceHolder}"
+                        PlaceholderColor="White"
+                        Text="{Binding Value, Converter={converter:CurrencyConverter}}"
+                        TextChanged="EntryValue_TextChanged"
+                        TextColor="White" />
+                    <pancake:PancakeView
+                        x:Name="pvBorder"
+                        Margin="0,-10,0,0"
+                        BackgroundGradientAngle="275"
+                        BackgroundGradientEndColor="{StaticResource WindowBackground}"
+                        BackgroundGradientStartColor="{StaticResource WindowBackground}"
+                        HeightRequest="2">
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            Text="continuar"
+                            TextColor="{StaticResource TextColorWhite}"
+                            VerticalTextAlignment="Center" />
+                    </pancake:PancakeView>
+                    <Label
+                        FontSize="14"
+                        HorizontalTextAlignment="Center"
+                        TextColor="White">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="valor entre " />
+                                <Span Text="{Binding MinValue, Converter={converter:CurrencyConverter}}" />
+                                <Span Text=" e " />
+                                <Span Text="{Binding MaxValue, Converter={converter:CurrencyConverter}}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <pancake:PancakeView
+                    Grid.Row="1"
+                    Margin="20"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    IsEnabled="{Binding CanContinue}">
+                    <pancake:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CreateBarCodeCommand}" />
+                    </pancake:PancakeView.GestureRecognizers>
+                    <pancake:PancakeView.Triggers>
+                        <Trigger TargetType="pancake:PancakeView" Property="IsEnabled" Value="True">
+                            <Setter Property="BackgroundGradientAngle" Value="275" />
+                            <Setter Property="BackgroundGradientEndColor" Value="{StaticResource GradientEndColor}" />
+                            <Setter Property="BackgroundGradientStartColor" Value="{StaticResource GradientStartColor}" />
+                        </Trigger>
+                        <Trigger TargetType="pancake:PancakeView" Property="IsEnabled" Value="False">
+                            <Setter Property="BackgroundColor" Value="#E9E9E9" />
+                        </Trigger>
+                    </pancake:PancakeView.Triggers>
+                    <Label
+                        HorizontalTextAlignment="Center"
+                        Text="continuar"
+                        TextColor="{StaticResource TextColorWhite}"
+                        VerticalTextAlignment="Center" />
+                </pancake:PancakeView>
+            </Grid>
         </Grid>
     </ContentPage>
 
