@@ -71,6 +71,7 @@
                     TextColor="White" />
                 <render:EntryBorderless
                     x:Name="entryValue"
+                    BackgroundColor="Transparent"
                     FontSize="35"
                     HorizontalOptions="FillAndExpand"
                     HorizontalTextAlignment="Center"
@@ -86,13 +87,7 @@
                     BackgroundGradientAngle="275"
                     BackgroundGradientEndColor="{StaticResource WindowBackground}"
                     BackgroundGradientStartColor="{StaticResource WindowBackground}"
-                    HeightRequest="2">
-                    <Label
-                        HorizontalTextAlignment="Center"
-                        Text="continuar"
-                        TextColor="{StaticResource TextColorWhite}"
-                        VerticalTextAlignment="Center" />
-                </pancake:PancakeView>
+                    HeightRequest="2" />
                 <Label
                     FontSize="14"
                     HorizontalTextAlignment="Center"

@@ -67,6 +67,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Renderer\CustomContentPageRenderer.cs" />
     <Compile Include="Renderer\CustomTabbedPageRenderer.cs" />
+    <Compile Include="Renderer\EntryBorderlessRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
