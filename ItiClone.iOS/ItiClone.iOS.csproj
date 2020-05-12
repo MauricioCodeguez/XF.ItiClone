@@ -145,4 +145,67 @@
       <Name>ItiClone</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cartaocreditoicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\diasdamaesconexaoicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\itauconexaoicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\itiicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\itiicon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\locationicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mycardsicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pagaricon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pencilicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\qrcodeicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\recargaicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\recommendationicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\shopclubconexaoicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sincardorange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\usericon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sincardiconorange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sincardiconorange%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sincardiconorange%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sincardiconwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sincardiconwhite%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sincardiconwhite%403x.png" />
+  </ItemGroup>
 </Project>
