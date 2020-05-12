@@ -1,5 +1,7 @@
 ﻿using ItiClone.Events;
+using ItiClone.Services.Navigation;
 using ItiClone.ViewModels;
+using ItiClone.Views.Custom;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,7 +17,7 @@ namespace ItiClone.Views
     }
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RegisterCardPage : ContentPage
+    public partial class RegisterCardPage : CustomContentPage
     {
         private ColorEnum _lastColorSelected;
         private readonly uint _durationSelectColor = 100;
@@ -27,6 +29,9 @@ namespace ItiClone.Views
         public RegisterCardPage()
         {
             InitializeComponent();
+
+            if (EnableBackButtonOverride)
+                CustomBackButtonAction = async () => { await GoBack(); };
         }
 
         protected async override void OnAppearing()
@@ -47,18 +52,12 @@ namespace ItiClone.Views
             MessagingCenter.Unsubscribe<ShowBackCardEvent>(this, "showBackCard");
         }
 
-        protected override bool OnBackButtonPressed()
+        private async Task GoBack()
         {
             if ((BindingContext as RegisterCardPageViewModel).CurrentStep > 1)
-            {
                 (BindingContext as RegisterCardPageViewModel).GoBackStepCommand.Execute(null);
-                return true;
-            }
             else
-            {
-                base.OnBackButtonPressed();
-                return false;
-            }
+                await NavigationService.Current.PopAsync();
         }
 
         private async void PvWhiteCardColor_Tapped(object sender, System.EventArgs e) => await SelectColor(ColorEnum.White);

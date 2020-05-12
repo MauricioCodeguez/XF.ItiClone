@@ -88,6 +88,8 @@
                             Padding="0"
                             BackgroundColor="{StaticResource WindowBackground}"
                             CornerRadius="10"
+                            HasShadow="{OnPlatform iOS='False',
+                                                   Android='True'}"
                             HeightRequest="20"
                             HorizontalOptions="Center"
                             VerticalOptions="Center"
@@ -104,6 +106,8 @@
                             Padding="0"
                             BackgroundColor="{StaticResource WindowBackground}"
                             CornerRadius="10"
+                            HasShadow="{OnPlatform iOS='False',
+                                                   Android='True'}"
                             HeightRequest="20"
                             HorizontalOptions="Center"
                             VerticalOptions="Center"

@@ -11,7 +11,8 @@
     mc:Ignorable="d">
     <NavigationPage.TitleView>
         <Label
-            Margin="0,0,70,0"
+            Margin="{OnPlatform iOS='0,0,35,0',
+                                Android='0,0,70,0'}"
             FontSize="16"
             HorizontalTextAlignment="Center"
             Text="{Binding Title}"

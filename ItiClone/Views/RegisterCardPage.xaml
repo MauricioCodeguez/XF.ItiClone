@@ -1,18 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<local:CustomContentPage
     x:Class="ItiClone.Views.RegisterCardPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behavior="clr-namespace:ItiClone.Behaviors"
     xmlns:converter="clr-namespace:ItiClone.Converters"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:ItiClone.Views.Custom"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    EnableBackButtonOverride="True"
     mc:Ignorable="d">
 
     <NavigationPage.TitleView>
         <Label
-            Margin="0,0,70,0"
+            Margin="{OnPlatform iOS='0,0,35,0',
+                                Android='0,0,70,0'}"
             FontSize="16"
             HorizontalTextAlignment="Center"
             Text="{Binding Title}"
@@ -59,6 +62,8 @@
                 Padding="0"
                 BorderColor="#BFBFBF"
                 CornerRadius="10"
+                HasShadow="{OnPlatform iOS='False',
+                                       Android='True'}"
                 HeightRequest="170"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="Center">
@@ -137,18 +142,19 @@
                         CornerRadius="25"
                         HeightRequest="50"
                         WidthRequest="50">
-                        <pancake:PancakeView.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="PvWhiteCardColor_Tapped" />
-                        </pancake:PancakeView.GestureRecognizers>
                         <pancake:PancakeView
                             x:Name="pvWhiteContentCardColor"
                             Margin="10"
                             BackgroundColor="White"
                             BorderColor="Black"
                             BorderThickness="1"
-                            CornerRadius="20"
+                            CornerRadius="15"
                             HeightRequest="30"
-                            WidthRequest="30" />
+                            WidthRequest="30">
+                            <pancake:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="PvWhiteCardColor_Tapped" />
+                            </pancake:PancakeView.GestureRecognizers>
+                        </pancake:PancakeView>
                     </pancake:PancakeView>
 
                     <pancake:PancakeView
@@ -159,18 +165,19 @@
                         CornerRadius="25"
                         HeightRequest="50"
                         WidthRequest="50">
-                        <pancake:PancakeView.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="PvOrangeCardColor_Tapped" />
-                        </pancake:PancakeView.GestureRecognizers>
                         <pancake:PancakeView
                             x:Name="pvOrangeContentCardColor"
                             Margin="10"
                             BackgroundGradientAngle="45"
                             BackgroundGradientEndColor="{StaticResource GradientEndColor}"
                             BackgroundGradientStartColor="{StaticResource GradientStartColor}"
-                            CornerRadius="20"
+                            CornerRadius="15"
                             HeightRequest="30"
-                            WidthRequest="30" />
+                            WidthRequest="30">
+                            <pancake:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="PvOrangeCardColor_Tapped" />
+                            </pancake:PancakeView.GestureRecognizers>
+                        </pancake:PancakeView>
                     </pancake:PancakeView>
 
                     <pancake:PancakeView
@@ -181,17 +188,18 @@
                         CornerRadius="25"
                         HeightRequest="50"
                         WidthRequest="50">
-                        <pancake:PancakeView.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="PvBlueCardColor_Tapped" />
-                        </pancake:PancakeView.GestureRecognizers>
                         <pancake:PancakeView
                             x:Name="pvBlueContentCardColor"
                             Margin="10"
                             BackgroundGradientEndColor="#2360F7"
                             BackgroundGradientStartColor="#5C2DFD"
-                            CornerRadius="20"
+                            CornerRadius="15"
                             HeightRequest="30"
-                            WidthRequest="30" />
+                            WidthRequest="30">
+                            <pancake:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="PvBlueCardColor_Tapped" />
+                            </pancake:PancakeView.GestureRecognizers>
+                        </pancake:PancakeView>
                     </pancake:PancakeView>
 
                     <pancake:PancakeView
@@ -202,17 +210,18 @@
                         CornerRadius="25"
                         HeightRequest="50"
                         WidthRequest="50">
-                        <pancake:PancakeView.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="PvBlackCardColor_Tapped" />
-                        </pancake:PancakeView.GestureRecognizers>
                         <pancake:PancakeView
                             x:Name="pvBlackContentCardColor"
                             Margin="10"
                             BackgroundGradientEndColor="#555555"
                             BackgroundGradientStartColor="#101010"
-                            CornerRadius="20"
+                            CornerRadius="15"
                             HeightRequest="30"
-                            WidthRequest="30" />
+                            WidthRequest="30">
+                            <pancake:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="PvBlackCardColor_Tapped" />
+                            </pancake:PancakeView.GestureRecognizers>
+                        </pancake:PancakeView>
                     </pancake:PancakeView>
                 </FlexLayout>
             </FlexLayout>
@@ -301,4 +310,4 @@
                 VerticalTextAlignment="Center" />
         </pancake:PancakeView>
     </Grid>
-</ContentPage>
+</local:CustomContentPage>

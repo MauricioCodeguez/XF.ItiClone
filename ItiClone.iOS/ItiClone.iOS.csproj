@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderer\CustomContentPageRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -207,5 +208,11 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\sincardiconwhite%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\colocardinheiroicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\iosbackarrow%402x.png" />
   </ItemGroup>
 </Project>
