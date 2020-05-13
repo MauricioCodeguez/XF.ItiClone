@@ -19,8 +19,6 @@ O que foi usado no desenvolvimento:
 
 ## Screenshots
 
-### Android
-
 #### Tela inicial
 <kbd><img width="250" src="art/Android/home_1.jpg" /></kbd>
 <kbd><img width="250" src="art/Android/home_2.jpg" /></kbd>
@@ -48,15 +46,3 @@ O que foi usado no desenvolvimento:
 <kbd><img width="250" src="art/Android/register_card_5.jpg" /></kbd>
 <kbd><img width="250" src="art/Android/register_card_6.jpg" /></kbd>
 <kbd><img width="250" src="art/Android/register_card_7.jpg" /></kbd>
-
-### iOS
-
-As telas foram testadas na plataforma iOS utilizando o emulador no iPhone XR, porém não possuo as capturas das telas.
-
-#### Tela inicial
-
-#### Tela para depositar dinheiro
-
-#### Tela para cobrar alguém
-
-#### Tela para cadastrar um cartão
