@@ -34,5 +34,12 @@ Clone do aplicativo Iti desenvolvido em Xamarin.Forms
 <kbd><img width="250" src="art/Android/register_card_6.jpg" /></kbd>
 <kbd><img width="250" src="art/Android/register_card_7.jpg" /></kbd>
 
-**iOS:**
-<br />Em desenvolvimento
+### iOS
+
+#### Tela inicial
+
+#### Tela para depositar dinheiro
+
+#### Tela para cobrar alguém
+
+#### Tela para cadastrar um cartão
