@@ -2,6 +2,10 @@
 
 Clone do aplicativo Iti desenvolvido em Xamarin.Forms
 
+## Gifs
+<kbd><img width="250" src="art/Gifs/home_video.gif" /></kbd>
+<kbd><img width="250" src="art/Gifs/register_card_video_animation.gif" /></kbd>
+
 ## Screenshots
 
 ### Android
